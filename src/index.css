@@ -42,10 +42,10 @@ img { display: block; max-width: 100%; }
   position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line);
   backdrop-filter: blur(16px); background: rgba(15, 18, 20, 0.82);
 }
-.site-header > .shell { min-height: 76px; }
+.site-header > .shell { min-height: 68px; }
 .brand-mark { display: inline-flex; align-items: center; gap: 12px; }
 .brand-mark span { display: grid; gap: 2px; }
-.brand-mark strong { font-size: 1rem; font-weight: 700; letter-spacing: -0.04em; }
+.brand-mark strong { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.05em; }
 .brand-mark small, .page-intro span, .section-heading span, .display-panel__meta span, .display-note span, .contact-side span, .footer-grid span, .eyebrow-line, .process-rail small {
   color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase;
 }
@@ -59,7 +59,7 @@ img { display: block; max-width: 100%; }
 .mobile-nav { display: grid; gap: 12px; padding: 0 0 18px; }
 .action-link, .primary-action, .secondary-action {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px;
-  padding: 0 18px; border-radius: var(--radius);
+  padding: 0 16px; border-radius: var(--radius);
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 .action-link, .secondary-action { border: 1px solid var(--line-strong); color: var(--text); }
@@ -80,11 +80,21 @@ img { display: block; max-width: 100%; }
 .hero-copy p, .service-panel p, .process-rail p, .review-strip p, .detail-columns p, .faq-grid p, .contact-aside p, .split-callout p, .site-footer p {
   margin: 0; color: var(--muted); line-height: 1.7;
 }
+.hero-note {
+  max-width: 42rem;
+  border-left: 1px solid var(--accent);
+  padding-left: 14px;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text);
+}
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px; }
 .hero-aside, .display-panel, .contact-side, .contact-aside > div, .service-panel, .process-rail article, .review-strip blockquote, .faq-grid article, .detail-columns article, .contact-form, .split-callout, .proof-ribbon, .page-intro {
   border: 1px solid var(--line); background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 48%), var(--panel);
 }
 .display-panel, .contact-side { overflow: hidden; }
+.display-panel { min-height: 100%; }
+.display-panel img { min-height: 420px; object-fit: cover; object-position: center; }
 .display-panel img, .service-panel__image { width: 100%; border-bottom: 1px solid var(--line); }
 .display-panel__meta, .display-note { display: grid; gap: 0; }
 .display-panel__meta > div, .display-note, .contact-side > div { display: grid; gap: 6px; padding: 16px 18px; }
@@ -95,6 +105,31 @@ img { display: block; max-width: 100%; }
   display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 18px; background: rgba(255, 255, 255, 0.02);
 }
 .proof-ribbon svg { color: var(--signal); }
+.section-contrast > * { background-color: #14191d; }
+.section-editorial > * { background-color: #12171a; }
+.quick-band {
+  display: grid;
+  gap: 1px;
+  margin-bottom: 18px;
+}
+.quick-band > div {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+.quick-band span {
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.quick-band strong {
+  font-size: 1rem;
+  font-weight: 600;
+}
 .section { padding: 28px 0 32px; }
 .section-heading { display: grid; gap: 10px; margin-bottom: 24px; max-width: 820px; }
 .section-heading h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); }
@@ -131,6 +166,17 @@ img { display: block; max-width: 100%; }
   display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius);
 }
 .site-footer { margin-top: 48px; border-top: 1px solid var(--line); }
+.site-footer::before {
+  content: "Rosario, Santa Fe  •  Diagnostico claro  •  WhatsApp directo";
+  display: block;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 16px;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
 .footer-grid { display: grid; gap: 24px; padding: 26px 0 40px; }
 .footer-links { display: grid; gap: 8px; margin-top: 12px; }
 .footer-links a { color: var(--muted); }
@@ -140,6 +186,7 @@ img { display: block; max-width: 100%; }
   .nav-desktop { display: flex; }
   .hero-block { grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.9fr); align-items: center; padding: 76px 0 42px; }
   .proof-ribbon { grid-template-columns: repeat(4, 1fr); }
+  .quick-band { grid-template-columns: repeat(3, 1fr); }
   .service-grid, .review-strip, .faq-grid, .detail-columns, .process-rail, .contact-layout, .footer-grid, .split-callout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .field-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

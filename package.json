@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sync:pages": "node scripts/sync-pages.mjs",
+    "publish:pages": "npm run build && npm run sync:pages"
   },
   "dependencies": {
     "clsx": "2.1.1",

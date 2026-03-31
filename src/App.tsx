@@ -193,12 +193,14 @@ function PageHero({
   eyebrow,
   title,
   body,
+  note,
   actions,
   aside,
 }: {
   eyebrow: string;
   title: string;
   body: string;
+  note?: string;
   actions?: ReactNode;
   aside: ReactNode;
 }) {
@@ -212,6 +214,7 @@ function PageHero({
         </div>
         <h1>{title}</h1>
         <p>{body}</p>
+        {note ? <div className="hero-note">{note}</div> : null}
         {actions ? <div className="hero-actions">{actions}</div> : null}
       </div>
       <div className="hero-aside">{aside}</div>
@@ -407,8 +410,9 @@ function HomePage() {
     <>
       <PageHero
         eyebrow="Servicio tecnico independiente"
-        title="Una web premium para un tecnico que explica claro y trabaja con criterio."
-        body="La home deja de ser una ficha improvisada y pasa a vender confianza: diagnostico claro, especialidad en celulares, notebooks y PC, y una experiencia visual que se siente propia."
+        title="Diagnostico claro para equipos que tienen que volver a rendir."
+        body="Celulares, notebooks y PC en Rosario con trato directo, criterio real y seguimiento por WhatsApp."
+        note="Primero se confirma la falla. Despues se decide si conviene reparar, actualizar o frenar."
         actions={
           <>
             <WhatsAppLink className="primary-action">
@@ -424,15 +428,9 @@ function HomePage() {
         aside={
           <div className="display-panel">
             <img src="assets/hero-workbench.svg" alt="Ilustracion de banco de trabajo tecnico" />
-            <div className="display-panel__meta">
-              <div>
-                <span>Foco</span>
-                <strong>Diagnostico + reparacion + criterio</strong>
-              </div>
-              <div>
-                <span>Canal principal</span>
-                <strong>WhatsApp y seguimiento directo</strong>
-              </div>
+            <div className="display-note">
+              <span>Mesa de trabajo</span>
+              <strong>Revision, descarte y criterio antes de tocar piezas</strong>
             </div>
           </div>
         }
@@ -447,11 +445,26 @@ function HomePage() {
         ))}
       </section>
 
+      <section className="section section-contrast shell quick-band">
+        <div>
+          <span>Canal principal</span>
+          <strong>WhatsApp directo</strong>
+        </div>
+        <div>
+          <span>Tipo de trabajo</span>
+          <strong>Celulares, notebooks y PC</strong>
+        </div>
+        <div>
+          <span>Decision</span>
+          <strong>Presupuesto solo despues de revisar</strong>
+        </div>
+      </section>
+
       <ServiceMatrix />
       <ProcessRail />
       <ReviewsStrip />
 
-      <section className="section shell split-callout">
+      <section className="section section-editorial shell split-callout">
         <div>
           <span>Sobre la marca</span>
           <h2>Oscura, precisa y con textura propia. Nada de tarjetas blandas ni marketing de plantilla.</h2>
@@ -476,8 +489,9 @@ function ServicesPage() {
     <>
       <PageHero
         eyebrow="Servicios"
-        title="La informacion se reparte mejor cuando cada bloque responde una duda concreta."
-        body="Esta pagina separa familias de equipo, problemas frecuentes y tipo de trabajo. La idea es que alguien llegue, identifique su caso y tenga un CTA a mano sin perderse."
+        title="Cada tipo de equipo pide una forma distinta de revisar y resolver."
+        body="La informacion se reparte por familia de equipo y por tipo de problema para que tu caso se ubique rapido."
+        note="La idea no es listar todo. Es ayudarte a ver si rosFIX es el lugar correcto para tu equipo."
         actions={
           <WhatsAppLink className="primary-action">
             <MessageCircle size={17} />
@@ -497,7 +511,7 @@ function ServicesPage() {
 
       <ServiceMatrix />
 
-      <section className="section shell detail-columns">
+      <section className="section section-editorial shell detail-columns">
         {serviceFamilies.map((service) => (
           <article key={service.name}>
             <h2>{service.name}</h2>
@@ -522,30 +536,29 @@ function ProcessPage() {
     <>
       <PageHero
         eyebrow="Diagnostico"
-        title="El mejor CTA no es gritar. Es mostrar que sabes como revisar, decidir y explicar."
-        body="Los competidores convierten cuando muestran proceso, tiempos y confianza. Esta pagina concentra ese contenido para que la marca se vea seria y ayude a cerrar consultas de mejor calidad."
+        title="El proceso vale porque evita errores antes del arreglo."
+        body="Mostrar metodo, tiempos posibles y criterio tecnico convierte mejor que prometer magia o precios instantaneos."
+        note="Se revisa, se descarta, se explica y recien ahi se define el camino."
         actions={
           <a href="contacto.html" className="primary-action">
             <Wrench size={17} />
             Contar mi problema
           </a>
         }
-        aside={
-          <div className="display-panel">
-            <img src="assets/workbench-grid.svg" alt="Textura y composicion de banco tecnico" />
-            <div className="display-panel__meta">
-              <div>
+          aside={
+            <div className="display-panel">
+              <img src="assets/workbench-grid.svg" alt="Textura y composicion de banco tecnico" />
+              <div className="display-note">
                 <span>Promesa</span>
                 <strong>Orden antes de tocar el equipo</strong>
               </div>
             </div>
-          </div>
-        }
-      />
+          }
+        />
       <ProcessRail />
       <FAQSection />
 
-      <section className="section shell detail-columns">
+      <section className="section section-contrast shell detail-columns">
         <article>
           <h2>Que convierte de verdad</h2>
           <ul>
@@ -576,7 +589,7 @@ function ProcessPage() {
             </li>
             <li>
               <ChevronRight size={14} />
-              <span>Cards redondeadas repetidas y layouts blandos que parecen hechos por IA.</span>
+              <span>La repeticion de cajas blandas y layouts que parecen hechos por piloto automatico.</span>
             </li>
           </ul>
         </article>
@@ -590,8 +603,9 @@ function AboutPage() {
     <>
       <PageHero
         eyebrow="Tecnico"
-        title="rosFIX se apoya en una forma de trabajar, no en una vidriera."
-        body="Un servicio tecnico independiente donde la confianza viene de explicar, medir y decidir bien. No de llenar el sitio de slogans ni de esconderse detras de un mostrador."
+        title="Una marca chica puede verse seria si el trabajo esta ordenado."
+        body="rosFIX no se apoya en una vidriera grande. Se apoya en explicacion clara, revision real y una forma de trabajo consistente."
+        note="La confianza no sale de parecer enorme. Sale de decir la posta y sostenerla."
         actions={
           <a href="contacto.html" className="secondary-action">
             Empezar una consulta
@@ -601,21 +615,15 @@ function AboutPage() {
         aside={
           <div className="display-panel">
             <img src="assets/bench-signal.svg" alt="Visual tecnico de rosFIX" />
-            <div className="display-panel__meta">
-              <div>
-                <span>Perfil</span>
-                <strong>Tecnico independiente en Rosario</strong>
-              </div>
-              <div>
-                <span>Estilo de trabajo</span>
-                <strong>Revision, explicacion y criterio</strong>
-              </div>
+            <div className="display-note">
+              <span>Perfil</span>
+              <strong>Tecnico independiente en Rosario</strong>
             </div>
           </div>
         }
       />
 
-      <section className="section shell detail-columns">
+      <section className="section section-editorial shell detail-columns">
         {aboutPoints.map(([title, body]) => (
           <article key={title}>
             <h2>{title}</h2>
@@ -624,7 +632,7 @@ function AboutPage() {
         ))}
       </section>
 
-      <section className="section shell split-callout">
+      <section className="section section-contrast shell split-callout">
         <div>
           <span>Direccion visual</span>
           <h2>Dark swiss, textura de terminal y una paleta calida que no cae en el azul generico.</h2>
@@ -645,8 +653,9 @@ function ContactPage() {
     <>
       <PageHero
         eyebrow="Contacto"
-        title="La pagina final tiene que bajar friccion, no inventar pasos de mas."
-        body="Se centraliza el formulario, el WhatsApp y la informacion que conviene tener a mano para una respuesta rapida. Menos ruido, mejor consulta."
+        title="La consulta tiene que bajar friccion y mejorar la respuesta."
+        body="Se centraliza el formulario, WhatsApp y la informacion que conviene tener a mano para arrancar mejor."
+        note="Modelo, falla, urgencia y antecedentes valen mas que un mensaje corto sin contexto."
         actions={
           <WhatsAppLink className="primary-action">
             <MessageCircle size={17} />
@@ -671,7 +680,7 @@ function ContactPage() {
         }
       />
 
-      <section className="section shell contact-layout">
+      <section className="section section-editorial shell contact-layout">
         <div>
           <div className="section-heading">
             <span>Consulta</span>

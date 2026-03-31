@@ -30,3 +30,19 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Publicacion estable en GitHub Pages
+
+Este repo usa GitHub Pages en modo `main` + `/docs` para evitar depender de GitHub Actions.
+
+Flujo recomendado:
+
+```bash
+npm install
+npm run publish:pages
+git add .
+git commit -m "Update Pages build"
+git push
+```
+
+Eso reconstruye `dist/` y sincroniza `docs/`, que es la carpeta servida por Pages.
