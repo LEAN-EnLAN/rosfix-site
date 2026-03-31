@@ -2,16 +2,16 @@ import { useEffect, useMemo, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import {
   ArrowRight,
-  Check,
   ChevronRight,
-  Clock3,
   Cpu,
+  GraduationCap,
   HardDrive,
   MapPin,
   Menu,
   MessageCircle,
   MonitorSmartphone,
   ShieldCheck,
+  TerminalSquare,
   UserCheck,
   Wrench,
   X,
@@ -26,107 +26,169 @@ type PageConfig = {
   path: string;
 };
 
-type ServiceFamily = {
-  name: string;
+type Feature = {
+  title: string;
+  text: string;
+};
+
+type ServiceItem = {
+  title: string;
   icon: typeof MonitorSmartphone;
-  summary: string;
-  details: string[];
+  text: string;
+  points: string[];
   image: string;
 };
 
-const WA_NUMBER = "+5493410000000";
+type CourseItem = {
+  title: string;
+  text: string;
+};
+
+const WA_NUMBER = "5493412008643";
+const MAIL = "leanplbo@gmail.com";
 
 const pages: PageConfig[] = [
-  { key: "home", title: "Inicio", intro: "Servicio tecnico independiente en Rosario.", path: "./" },
-  { key: "services", title: "Servicios", intro: "Celulares, notebooks, PC y diagnostico basico.", path: "servicios.html" },
-  { key: "process", title: "Proceso", intro: "Metodo, tiempos posibles y criterio tecnico.", path: "proceso.html" },
-  { key: "about", title: "Tecnico", intro: "La forma de trabajo detras de rosFIX.", path: "sobre-rosfix.html" },
-  { key: "contact", title: "Contacto", intro: "WhatsApp directo y formulario corto.", path: "contacto.html" },
+  { key: "home", title: "Inicio", intro: "Servicio tecnico y formacion practica con criterio real.", path: "./" },
+  { key: "services", title: "Servicios", intro: "Hardware, celulares, Linux y diagnostico real.", path: "servicios.html" },
+  { key: "process", title: "Metodo", intro: "Diagnostico, criterio, explicacion y formacion util.", path: "proceso.html" },
+  { key: "about", title: "ROSFIX", intro: "La base tecnica y humana detras de la marca.", path: "sobre-rosfix.html" },
+  { key: "contact", title: "Contacto", intro: "Atencion directa para servicio tecnico y cursos.", path: "contacto.html" },
 ];
 
-const serviceFamilies: ServiceFamily[] = [
+const pillars: Feature[] = [
   {
-    name: "Celulares",
-    icon: MonitorSmartphone,
-    summary: "Pantallas, pin de carga, bateria, software y fallas que requieren revisar con criterio.",
-    details: [
-      "Pantallas rotas o con toque fallando",
-      "Baterias degradadas o infladas",
-      "Conectores de carga y flex",
-      "Equipos mojados o con golpes",
-      "Software, reinicios y rendimiento",
-    ],
-    image: "assets/hero-devices.svg",
+    title: "Atencion directa",
+    text: "Cada caso se trata de forma personal. Sin soporte en capas, sin respuestas de manual.",
   },
   {
-    name: "Notebooks",
+    title: "Diagnostico real",
+    text: "Antes de tocar un equipo o cambiar piezas, primero se entiende el problema.",
+  },
+  {
+    title: "Cursos hechos a mano",
+    text: "Contenido explicado desde la experiencia real, con foco en lo util y sin relleno innecesario.",
+  },
+  {
+    title: "Hardware, celulares y Linux",
+    text: "Un perfil tecnico hibrido para resolver desde fallas fisicas hasta problemas de sistema.",
+  },
+];
+
+const featuredLines = [
+  "No trabajamos por volumen. Trabajamos con criterio.",
+  "No improvisamos respuestas. Diagnosticamos.",
+  "No hacemos cursos inflados. Ensenamos lo que sirve.",
+  "Atencion directa. Sin respuestas copiadas.",
+];
+
+const services: ServiceItem[] = [
+  {
+    title: "PC y notebooks",
     icon: HardDrive,
-    summary: "Rendimiento, temperatura, discos, mantenimiento interno y equipos que tardan en arrancar.",
-    details: [
-      "SSD, RAM y mejoras de rendimiento",
-      "Limpieza interna y pasta termica",
-      "Cuelgues, reinicios y lentitud",
-      "Teclado, pantalla y puertos",
-      "Chequeo termico y estabilidad",
+    text: "Diagnostico de fallas, mantenimiento, optimizacion y reparacion de equipos de escritorio y portatiles. La prioridad es entender la causa real antes de intervenir.",
+    points: [
+      "Rendimiento, temperatura y mantenimiento",
+      "Discos, memoria, sistema y hardware comun",
+      "Revision responsable antes de cambiar piezas",
     ],
     image: "assets/workbench-grid.svg",
   },
   {
-    name: "PC de escritorio",
-    icon: Cpu,
-    summary: "Armado, mantenimiento, diagnostico por partes y equipos que dejaron de dar imagen.",
-    details: [
-      "Diagnostico de hardware",
-      "Fuente, RAM, video y discos",
-      "Mantenimiento preventivo",
-      "Armado y reorganizacion",
-      "Temperaturas, ruido y estabilidad",
+    title: "Celulares",
+    icon: MonitorSmartphone,
+    text: "Reparacion de dispositivos moviles, diagnostico de fallas comunes, reemplazo de partes y resolucion de problemas frecuentes en equipos Apple y Android.",
+    points: [
+      "Diagnostico de fallas comunes",
+      "Reemplazo de partes y criterio tecnico",
+      "Trabajo claro orientado a resultados concretos",
+    ],
+    image: "assets/hero-devices.svg",
+  },
+  {
+    title: "Linux y software",
+    icon: TerminalSquare,
+    text: "Soporte tecnico para instalacion, configuracion, administracion y resolucion de problemas en entornos Linux y sistemas informaticos en general.",
+    points: [
+      "Linux aplicado a soporte y trabajo real",
+      "Configuracion, diagnostico y administracion",
+      "Menos teoria abstracta, mas utilidad concreta",
     ],
     image: "assets/bench-signal.svg",
+  },
+  {
+    title: "Diagnostico tecnico",
+    icon: Cpu,
+    text: "Evaluacion precisa para detectar fallas de hardware, conectividad o sistema. La prioridad no es vender una reparacion: es decir con honestidad que pasa y que conviene hacer.",
+    points: [
+      "Diagnostico honesto antes de intervenir",
+      "Comunicacion clara sobre opciones reales",
+      "Criterio tecnico por encima del automatismo",
+    ],
+    image: "assets/hero-workbench.svg",
+  },
+];
+
+const courses: CourseItem[] = [
+  {
+    title: "Diagnostico de PC que no enciende",
+    text: "Una guia practica para entender causas comunes, detectar fallas y ordenar el diagnostico sin perder tiempo ni cambiar piezas al azar.",
+  },
+  {
+    title: "Reparacion basica de celulares",
+    text: "Fundamentos utiles para empezar a entender fallas frecuentes, componentes, logica de reparacion y buenas practicas de trabajo.",
+  },
+  {
+    title: "Linux practico para usuarios reales",
+    text: "Uso real de Linux para soporte, administracion, diagnostico y trabajo tecnico. Menos teoria abstracta, mas herramientas aplicables.",
+  },
+  {
+    title: "Electronica basica aplicada",
+    text: "Conceptos esenciales de electronica orientados al diagnostico, la medicion y la comprension tecnica de fallas comunes.",
   },
 ];
 
 const processSteps = [
-  ["01", "Consulta inicial", "Contas el problema, el modelo y si ya se le hizo algo al equipo."],
-  ["02", "Revision con criterio", "No se adivina. Se revisa el equipo, se confirma la falla y se descartan falsas pistas."],
-  ["03", "Presupuesto claro", "Te paso precio, alcance y tiempos posibles en lenguaje normal."],
-  ["04", "Reparacion y pruebas", "Se entrega con pruebas hechas y una explicacion concreta de lo que se toco."],
+  ["01", "Escribis", "Contas que esta pasando, que necesitas resolver o que queres aprender."],
+  ["02", "Se evalua", "Se analiza el caso, se ordena el problema y se define que conviene revisar."],
+  ["03", "Se explica", "Antes de avanzar, se comunica con claridad que pasa, que opciones hay y que tiene sentido hacer."],
+  ["04", "Se resuelve o se ensena", "Se repara, se optimiza o se transforma el problema en un proceso de aprendizaje util."],
 ] as const;
 
-const proofPoints = [
-  "Diagnostico real antes de presupuestar",
-  "Trato directo con quien revisa el equipo",
-  "Lenguaje claro, sin jerga innecesaria",
-  "Rosario y alrededores como foco de atencion",
+const serviceFaq = [
+  ["Trabajas solo con celulares?", "No. ROSFIX combina reparacion de celulares, computadoras, notebooks, soporte tecnico y trabajo sobre sistemas."],
+  ["Haces diagnostico antes de reparar?", "Si. La prioridad es entender bien el problema antes de tocar el equipo o sugerir un reemplazo."],
+  ["Atendes personalmente?", "Si. Uno de los diferenciales principales es justamente la atencion directa y la comunicacion clara durante el proceso."],
+  ["Trabajas con Apple y Android?", "Si. Hay experiencia concreta en dispositivos Apple e iOS, ademas de trabajo con equipos Android y hardware multimarca."],
+] as const;
+
+const courseFaq = [
+  ["Los cursos estan pensados para principiantes?", "Depende del curso, pero la idea general es explicar de forma clara, util y progresiva, sin asumir mas conocimiento del necesario."],
+  ["Son cursos teoricos?", "No. El enfoque esta puesto en aplicacion, criterio, herramientas y resolucion de problemas reales."],
+  ["Se puede aprender aunque no quiera trabajar de tecnico?", "Si. Los cursos tambien estan pensados para personas que quieren entender mejor la tecnologia que usan o resolver problemas cotidianos por su cuenta."],
+] as const;
+
+const experience = [
+  ["Rosario Tecno", "Experiencia en diagnostico y reparacion de celulares, especialmente en dispositivos Apple e iOS, con trabajo tecnico orientado a calidad, tiempos y buena comunicacion."],
+  ["Trabajo independiente", "Actividad como tecnico informatico independiente desde 2023, brindando soporte integral, diagnostico de hardware y gestion autonoma de clientes, repuestos y control de calidad."],
+  ["Soporte e infraestructura educativa", "Participacion en despliegue tecnico, mantenimiento y resolucion de incidencias de hardware y conectividad en entornos educativos junto al equipo docente del Colegio San Jose / Casa Salesiana."],
+  ["Formacion y desarrollo", "Perfil hibrido con base en hardware, redes, software y administracion de sistemas, con ingles fluido y desarrollo de proyectos tecnicos propios."],
 ];
 
-const reviews = [
-  [
-    "Lo que mas cierra no es el verso: es entender rapido si tiene arreglo y cuanto sentido tiene hacerlo.",
-    "Clientes que comparan criterio antes que marketing",
-  ],
-  [
-    "La marca tiene que verse ordenada porque el servicio tambien lo esta. Taller serio, explicacion clara, seguimiento simple.",
-    "Direccion visual para rosFIX",
-  ],
-] as const;
+function WhatsAppLink({
+  className,
+  children,
+  message,
+}: {
+  className: string;
+  children: ReactNode;
+  message?: string;
+}) {
+  const href = message
+    ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`
+    : `https://wa.me/${WA_NUMBER}`;
 
-const faq = [
-  ["Cuanto tarda una reparacion?", "Depende de la falla y del repuesto. En problemas comunes, la respuesta suele llegar el mismo dia o al siguiente."],
-  ["Vale la pena arreglar un equipo viejo?", "El diagnostico sirve para decidir si conviene reparar, actualizar o frenar antes de gastar mal."],
-  ["Que datos tengo que mandar?", "Marca, modelo, sintomas, si se golpeo o mojo y si alguien ya lo reviso."],
-  ["Trabajas solo con Rosario?", "La base es Rosario y alrededores. La coordinacion principal se hace por WhatsApp."],
-] as const;
-
-const aboutPoints = [
-  ["Base local", "Rosario, Santa Fe, con atencion coordinada y seguimiento directo."],
-  ["Perfil", "Tecnico independiente con foco en hardware, mantenimiento y diagnostico."],
-  ["Metodo", "Revision, explicacion y recomendacion con criterio antes de tocar de mas."],
-] as const;
-
-function WhatsAppLink({ className, children }: { className: string; children: ReactNode }) {
   return (
-    <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noreferrer" className={className}>
+    <a href={href} target="_blank" rel="noreferrer" className={className}>
       {children}
     </a>
   );
@@ -144,11 +206,11 @@ function Nav({ currentPage }: { currentPage: PageKey }) {
   return (
     <header className="site-header">
       <div className="shell flex items-center justify-between gap-6">
-        <a href="./" className="brand-mark" aria-label="rosFIX inicio">
+        <a href="./" className="brand-mark" aria-label="ROSFIX inicio">
           <img src="assets/brand-mark.svg" alt="" width="34" height="34" />
           <span>
-            <strong>rosFIX</strong>
-            <small>servicio tecnico en Rosario</small>
+            <strong>ROSFIX</strong>
+            <small>servicio tecnico y formacion practica</small>
           </span>
         </a>
 
@@ -163,7 +225,7 @@ function Nav({ currentPage }: { currentPage: PageKey }) {
         <div className="hidden items-center gap-3 md:flex">
           <WhatsAppLink className="action-link">
             <MessageCircle size={16} />
-            Pedir diagnostico
+            Solicitar diagnostico
           </WhatsAppLink>
         </div>
 
@@ -222,24 +284,57 @@ function PageHero({
   );
 }
 
-function ServiceMatrix() {
+function PillarGrid() {
+  return (
+    <section className="section shell">
+      <div className="section-heading">
+        <span>Pilares</span>
+        <h2>Atencion directa, diagnostico real y formacion util</h2>
+      </div>
+      <div className="detail-columns">
+        {pillars.map((item) => (
+          <article key={item.title}>
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function FeatureRibbon() {
+  return (
+    <section className="shell proof-ribbon">
+      {featuredLines.map((item) => (
+        <div key={item}>
+          <ShieldCheck size={14} />
+          <span>{item}</span>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+function ServicesSection({ title = "Servicios tecnicos", intro = "Trabajo sobre problemas reales, con foco en diagnostico, reparacion responsable y comunicacion clara durante todo el proceso." }: { title?: string; intro?: string }) {
   return (
     <section className="section shell">
       <div className="section-heading">
         <span>Servicios</span>
-        <h2>Distribucion clara y foco en problemas reales</h2>
+        <h2>{title}</h2>
+        <p>{intro}</p>
       </div>
-      <div className="service-grid">
-        {serviceFamilies.map(({ name, summary, details, icon: Icon, image }) => (
+      <div className="service-grid service-grid-wide">
+        {services.map(({ title: name, text, points, icon: Icon, image }) => (
           <article key={name} className="service-panel">
             <div className="service-panel__head">
               <Icon size={18} />
               <strong>{name}</strong>
             </div>
-            <p>{summary}</p>
+            <p>{text}</p>
             <img src={image} alt="" className="service-panel__image" />
             <ul>
-              {details.map((item) => (
+              {points.map((item) => (
                 <li key={item}>
                   <ChevronRight size={14} />
                   <span>{item}</span>
@@ -253,12 +348,50 @@ function ServiceMatrix() {
   );
 }
 
+function CoursesSection() {
+  return (
+    <section className="section section-editorial shell">
+      <div className="section-heading">
+        <span>Cursos</span>
+        <h2>Cursos practicos</h2>
+        <p>Cursos pensados para ensenar desde la experiencia real, con foco en problemas cotidianos, criterio tecnico y aplicacion inmediata.</p>
+      </div>
+      <div className="detail-columns">
+        {courses.map((course) => (
+          <article key={course.title}>
+            <h2>{course.title}</h2>
+            <p>{course.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function MethodSection() {
+  return (
+    <section className="section section-contrast shell split-callout">
+      <div>
+        <span>Metodologia</span>
+        <h2>Como estan hechos los cursos</h2>
+      </div>
+      <div>
+        <p>
+          Cada curso esta armado desde la experiencia real de reparacion, soporte y resolucion de problemas.
+          El objetivo no es llenar horas ni sonar tecnico: es hacer entendible lo importante, ordenar el
+          razonamiento y ensenar de una forma util de verdad.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function ProcessRail() {
   return (
     <section className="section shell">
       <div className="section-heading">
         <span>Proceso</span>
-        <h2>El sitio tiene que explicar como trabajas, no solo listar arreglos</h2>
+        <h2>Como trabajamos</h2>
       </div>
       <div className="process-rail">
         {processSteps.map(([number, title, description]) => (
@@ -273,39 +406,101 @@ function ProcessRail() {
   );
 }
 
-function ReviewsStrip() {
+function FaqSection({
+  title,
+  items,
+}: {
+  title: string;
+  items: readonly (readonly [string, string])[];
+}) {
   return (
     <section className="section shell">
       <div className="section-heading">
-        <span>Senal de confianza</span>
-        <h2>La conversion viene de claridad operativa y de una marca que parece ordenada</h2>
+        <span>FAQ</span>
+        <h2>{title}</h2>
       </div>
-      <div className="review-strip">
-        {reviews.map(([quote, author]) => (
-          <blockquote key={quote}>
-            <p>{quote}</p>
-            <footer>{author}</footer>
-          </blockquote>
+      <div className="faq-grid">
+        {items.map(([question, answer]) => (
+          <article key={question}>
+            <h3>{question}</h3>
+            <p>{answer}</p>
+          </article>
         ))}
       </div>
     </section>
   );
 }
 
-function FAQSection() {
+function FounderSection() {
   return (
     <section className="section shell">
       <div className="section-heading">
-        <span>FAQ</span>
-        <h2>Preguntas que sacan friccion antes de escribir</h2>
+        <span>Fundador</span>
+        <h2>Sobre el fundador</h2>
       </div>
-      <div className="faq-grid">
-        {faq.map(([question, answer]) => (
-          <article key={question}>
-            <h3>{question}</h3>
-            <p>{answer}</p>
+      <div className="split-callout">
+        <div>
+          <p>
+            Leandro Palombo combina experiencia en reparacion de celulares, soporte tecnico, hardware y sistemas,
+            con una formacion tecnica solida en informatica y una fuerte orientacion a explicar bien lo que hace.
+          </p>
+        </div>
+        <div>
+          <p>
+            Trabajo en reparacion de celulares en Rosario Tecno, se desempena como tecnico informatico independiente
+            desde 2023 y colaboro en soporte tecnico e infraestructura educativa en el Colegio San Jose / Casa
+            Salesiana entre 2022 y 2025.
+          </p>
+          <p>
+            Actualmente cursa su ultimo tramo de la Tecnicatura en Informatica. Tambien participo en el proyecto
+            Pildhora, con el que obtuvo el 2. puesto provincial en Agromakers 2025.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ExperienceSection() {
+  return (
+    <section className="section section-editorial shell">
+      <div className="section-heading">
+        <span>Experiencia real</span>
+        <h2>Base tecnica y trabajo sostenido en casos concretos</h2>
+      </div>
+      <div className="detail-columns">
+        {experience.map(([title, text]) => (
+          <article key={title}>
+            <h2>{title}</h2>
+            <p>{text}</p>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function PlaceholderTestimonials() {
+  return (
+    <section className="section shell">
+      <div className="section-heading">
+        <span>Testimonios</span>
+        <h2>Proximamente: casos reales y testimonios</h2>
+        <p>ROSFIX esta en construccion como marca publica. Proximamente vas a poder ver casos reales, resultados concretos y experiencias de clientes y alumnos.</p>
+      </div>
+      <div className="review-strip">
+        <blockquote>
+          <p>Espacio reservado para experiencia de cliente de servicio tecnico.</p>
+          <footer>Cliente de servicio tecnico</footer>
+        </blockquote>
+        <blockquote>
+          <p>Espacio reservado para alumno de curso practico.</p>
+          <footer>Alumno de cursos</footer>
+        </blockquote>
+        <blockquote>
+          <p>Espacio reservado para caso real de diagnostico complejo resuelto.</p>
+          <footer>Caso real documentado</footer>
+        </blockquote>
       </div>
     </section>
   );
@@ -317,8 +512,9 @@ function ContactForm() {
     const formData = new FormData(event.currentTarget);
     const message = [
       `Hola Leandro, soy ${formData.get("nombre")}.`,
-      `Tengo un ${formData.get("equipo")} ${formData.get("modelo")}.`,
-      `Problema: ${formData.get("problema")}.`,
+      `Quiero consultar por ${formData.get("motivo")}.`,
+      `Equipo o curso: ${formData.get("modelo")}.`,
+      `Detalle: ${formData.get("problema")}.`,
       `Urgencia: ${formData.get("urgencia")}.`,
     ].join("\n");
 
@@ -333,28 +529,27 @@ function ContactForm() {
           <input required name="nombre" type="text" placeholder="Ej: Martin" />
         </label>
         <label>
-          <span>Equipo</span>
-          <select required name="equipo" defaultValue="Celular">
-            <option>Celular</option>
-            <option>Notebook</option>
-            <option>PC de escritorio</option>
-            <option>Otro</option>
+          <span>Motivo</span>
+          <select required name="motivo" defaultValue="un diagnostico tecnico">
+            <option value="un diagnostico tecnico">Solicitar diagnostico</option>
+            <option value="un servicio tecnico">Consultar por servicio</option>
+            <option value="un curso practico">Consultar por cursos</option>
           </select>
         </label>
       </div>
 
       <label>
-        <span>Marca y modelo</span>
-        <input required name="modelo" type="text" placeholder="Moto G84 / Lenovo IdeaPad / PC Ryzen" />
+        <span>Equipo o curso</span>
+        <input required name="modelo" type="text" placeholder="PC, notebook, celular o curso que te interesa" />
       </label>
 
       <label>
-        <span>Que le pasa?</span>
-        <textarea required name="problema" rows={5} placeholder="Contame sintomas, si se golpeo o mojo, y si alguien ya lo reviso." />
+        <span>Que necesitas resolver</span>
+        <textarea required name="problema" rows={5} placeholder="Contame el problema, lo que queres aprender o el contexto del equipo." />
       </label>
 
       <fieldset>
-        <legend>Urgencia</legend>
+        <legend>Prioridad</legend>
         <div className="field-options">
           <label>
             <input type="radio" name="urgencia" value="Normal" defaultChecked />
@@ -369,7 +564,7 @@ function ContactForm() {
 
       <button type="submit" className="primary-action">
         <MessageCircle size={17} />
-        Enviar consulta por WhatsApp
+        Contactar ROSFIX
       </button>
     </form>
   );
@@ -380,8 +575,9 @@ function Footer() {
     <footer className="site-footer">
       <div className="shell footer-grid">
         <div>
-          <strong>rosFIX</strong>
-          <p>Diagnostico claro, trato directo y servicio tecnico con foco en Rosario.</p>
+          <strong>ROSFIX</strong>
+          <p>Diagnostico tecnico especializado.</p>
+          <p>Servicio tecnico, formacion practica y criterio real. Rosario, Santa Fe.</p>
         </div>
         <div>
           <span>Paginas</span>
@@ -394,11 +590,10 @@ function Footer() {
           </div>
         </div>
         <div>
-          <span>Accion</span>
-          <WhatsAppLink className="action-link">
-            <MessageCircle size={16} />
-            Hablar ahora
-          </WhatsAppLink>
+          <span>Microcopy</span>
+          <p>Atencion directa.</p>
+          <p>Sin humo.</p>
+          <p>Sin respuestas copiadas.</p>
         </div>
       </div>
     </footer>
@@ -409,75 +604,72 @@ function HomePage() {
   return (
     <>
       <PageHero
-        eyebrow="Servicio tecnico independiente"
-        title="Diagnostico claro para equipos que tienen que volver a rendir."
-        body="Celulares, notebooks y PC en Rosario con trato directo, criterio real y seguimiento por WhatsApp."
-        note="Primero se confirma la falla. Despues se decide si conviene reparar, actualizar o frenar."
+        eyebrow="ROSFIX"
+        title="Diagnostico real. Atencion directa. Cursos hechos a mano."
+        body="ROSFIX es una marca independiente para quienes buscan reparar mejor, entender mejor y aprender sin relleno. Servicio tecnico con criterio, comunicacion directa y formacion practica explicada como a uno le hubiese gustado aprender."
+        note="No se posiciona como laboratorio de placa ni como promesa vacia de complejidad. Se posiciona como criterio tecnico, soporte real y formacion util."
         actions={
           <>
             <WhatsAppLink className="primary-action">
               <MessageCircle size={17} />
-              Pedir diagnostico por WhatsApp
+              Solicitar diagnostico
             </WhatsAppLink>
             <a href="servicios.html" className="secondary-action">
-              Ver reparaciones
+              Ver cursos
               <ArrowRight size={16} />
             </a>
           </>
         }
         aside={
           <div className="display-panel">
-            <img src="assets/hero-workbench.svg" alt="Ilustracion de banco de trabajo tecnico" />
+            <img src="assets/hero-workbench.svg" alt="Banco de trabajo tecnico de ROSFIX" />
             <div className="display-note">
-              <span>Mesa de trabajo</span>
-              <strong>Revision, descarte y criterio antes de tocar piezas</strong>
+              <span>Concepto</span>
+              <strong>Servicio tecnico y formacion practica con criterio real</strong>
             </div>
           </div>
         }
       />
 
-      <section className="shell proof-ribbon">
-        {proofPoints.map((item) => (
-          <div key={item}>
-            <Check size={14} />
-            <span>{item}</span>
-          </div>
-        ))}
-      </section>
+      <FeatureRibbon />
+      <PillarGrid />
+      <ServicesSection />
+      <CoursesSection />
+      <MethodSection />
+      <PlaceholderTestimonials />
 
-      <section className="section section-contrast shell quick-band">
+      <section className="section section-contrast shell split-callout">
         <div>
-          <span>Canal principal</span>
-          <strong>WhatsApp directo</strong>
-        </div>
-        <div>
-          <span>Tipo de trabajo</span>
-          <strong>Celulares, notebooks y PC</strong>
-        </div>
-        <div>
-          <span>Decision</span>
-          <strong>Presupuesto solo despues de revisar</strong>
-        </div>
-      </section>
-
-      <ServiceMatrix />
-      <ProcessRail />
-      <ReviewsStrip />
-
-      <section className="section section-editorial shell split-callout">
-        <div>
-          <span>Sobre la marca</span>
-          <h2>Oscura, precisa y con textura propia. Nada de tarjetas blandas ni marketing de plantilla.</h2>
+          <span>Manifiesto</span>
+          <h2>Hay servicios que trabajan por volumen. ROSFIX prefiere trabajar con criterio.</h2>
         </div>
         <div>
           <p>
-            La direccion visual mezcla orden suizo, interfaces oscuras y referencias de hardware sin copiar el look
-            de una app SaaS. La sensacion tiene que ser premium, pero aterrizada al oficio.
+            Muchas veces el problema no es solo que algo falle, sino que nadie se tome el tiempo de
+            diagnosticarlo bien, explicarlo bien y resolverlo con responsabilidad. La atencion es directa.
+            El diagnostico es honesto. La explicacion importa. Y si algo no conviene, se dice.
           </p>
-          <a href="proceso.html" className="secondary-action">
-            Entender el proceso
-            <ArrowRight size={16} />
-          </a>
+          <p>
+            Lo mismo pasa con la formacion. No se trata de vender cursos inflados, sino de ensenar lo que
+            realmente sirve, desde la practica, con paciencia y con el tipo de claridad que normalmente falta.
+          </p>
+        </div>
+      </section>
+
+      <section className="section shell split-callout">
+        <div>
+          <span>CTA final</span>
+          <h2>Si valoras atencion directa y trabajo tecnico real, estas en el lugar correcto.</h2>
+        </div>
+        <div>
+          <p>
+            ROSFIX esta hecho para quienes prefieren resolver con criterio antes que entrar en una cadena de
+            respuestas automaticas.
+          </p>
+          <WhatsAppLink className="primary-action">
+            <MessageCircle size={17} />
+            Hablar ahora
+          </WhatsAppLink>
         </div>
       </section>
     </>
@@ -488,45 +680,39 @@ function ServicesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Servicios"
-        title="Cada tipo de equipo pide una forma distinta de revisar y resolver."
-        body="La informacion se reparte por familia de equipo y por tipo de problema para que tu caso se ubique rapido."
-        note="La idea no es listar todo. Es ayudarte a ver si rosFIX es el lugar correcto para tu equipo."
+        eyebrow="Servicios tecnicos"
+        title="Servicio tecnico con criterio. Formacion sin humo."
+        body="Reparacion de computadoras y celulares, soporte tecnico y cursos practicos disenados desde la experiencia real. Sin respuestas copiadas. Sin vueltas. Sin promesas vacias."
+        note="ROSFIX no se comunica como especialista absoluto en board repair ni como promesa de microsoldadura. Se comunica como diagnostico real, soporte tecnico, Linux y formacion util."
         actions={
-          <WhatsAppLink className="primary-action">
-            <MessageCircle size={17} />
-            Consultar mi equipo
-          </WhatsAppLink>
+          <>
+            <WhatsAppLink className="primary-action">
+              <MessageCircle size={17} />
+              Explorar servicios
+            </WhatsAppLink>
+            <a href="proceso.html" className="secondary-action">
+              Ver metodologia
+              <ArrowRight size={16} />
+            </a>
+          </>
         }
         aside={
           <div className="display-panel">
-            <img src="assets/hero-devices.svg" alt="Composicion de dispositivos en estilo tecnico" />
+            <img src="assets/hero-devices.svg" alt="Visual tecnico de dispositivos y herramientas" />
             <div className="display-note">
-              <span>Categoria</span>
-              <strong>Celulares, notebooks y PC</strong>
+              <span>Foco</span>
+              <strong>Hardware, celulares, Linux y diagnostico responsable</strong>
             </div>
           </div>
         }
       />
 
-      <ServiceMatrix />
-
-      <section className="section section-editorial shell detail-columns">
-        {serviceFamilies.map((service) => (
-          <article key={service.name}>
-            <h2>{service.name}</h2>
-            <p>{service.summary}</p>
-            <ul>
-              {service.details.map((item) => (
-                <li key={item}>
-                  <ChevronRight size={14} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </section>
+      <ServicesSection
+        title="Servicios tecnicos"
+        intro="Trabajo sobre problemas reales, con foco en diagnostico, reparacion responsable y comunicacion clara durante todo el proceso."
+      />
+      <CoursesSection />
+      <FaqSection title="Preguntas frecuentes sobre servicios" items={serviceFaq} />
     </>
   );
 }
@@ -535,65 +721,36 @@ function ProcessPage() {
   return (
     <>
       <PageHero
-        eyebrow="Diagnostico"
-        title="El proceso vale porque evita errores antes del arreglo."
-        body="Mostrar metodo, tiempos posibles y criterio tecnico convierte mejor que prometer magia o precios instantaneos."
-        note="Se revisa, se descarta, se explica y recien ahi se define el camino."
+        eyebrow="Metodo"
+        title="Mas criterio. Menos automatismo."
+        body="Atencion directa, diagnostico honesto y cursos construidos desde la practica real. ROSFIX combina reparacion, soporte tecnico y ensenanza clara para resolver problemas de verdad."
+        note="No se trata de aparentar complejidad. Se trata de entender bien el problema."
         actions={
-          <a href="contacto.html" className="primary-action">
-            <Wrench size={17} />
-            Contar mi problema
-          </a>
+          <>
+            <WhatsAppLink className="primary-action">
+              <MessageCircle size={17} />
+              Pedir revision
+            </WhatsAppLink>
+            <a href="sobre-rosfix.html" className="secondary-action">
+              Conocer ROSFIX
+              <ArrowRight size={16} />
+            </a>
+          </>
         }
-          aside={
-            <div className="display-panel">
-              <img src="assets/workbench-grid.svg" alt="Textura y composicion de banco tecnico" />
-              <div className="display-note">
-                <span>Promesa</span>
-                <strong>Orden antes de tocar el equipo</strong>
-              </div>
+        aside={
+          <div className="display-panel">
+            <img src="assets/workbench-grid.svg" alt="Panel de metodo y diagnostico de ROSFIX" />
+            <div className="display-note">
+              <span>Metodo</span>
+              <strong>Se evalua, se explica y recien despues se decide</strong>
             </div>
-          }
-        />
-      <ProcessRail />
-      <FAQSection />
+          </div>
+        }
+      />
 
-      <section className="section section-contrast shell detail-columns">
-        <article>
-          <h2>Que convierte de verdad</h2>
-          <ul>
-            <li>
-              <ChevronRight size={14} />
-              <span>CTA directo: "Pedir diagnostico por WhatsApp" y "Ver reparaciones".</span>
-            </li>
-            <li>
-              <ChevronRight size={14} />
-              <span>Prueba de metodo: proceso, tiempos razonables, honestidad si no conviene reparar.</span>
-            </li>
-            <li>
-              <ChevronRight size={14} />
-              <span>Senales visuales de taller real: assets propios, textura y estructura consistente.</span>
-            </li>
-          </ul>
-        </article>
-        <article>
-          <h2>Que evitamos</h2>
-          <ul>
-            <li>
-              <ChevronRight size={14} />
-              <span>Animaciones vacias, bloques inflados y tonos de startup generica.</span>
-            </li>
-            <li>
-              <ChevronRight size={14} />
-              <span>Promesas de tiempo o precio sin contexto.</span>
-            </li>
-            <li>
-              <ChevronRight size={14} />
-              <span>La repeticion de cajas blandas y layouts que parecen hechos por piloto automatico.</span>
-            </li>
-          </ul>
-        </article>
-      </section>
+      <ProcessRail />
+      <MethodSection />
+      <FaqSection title="Preguntas frecuentes sobre cursos" items={courseFaq} />
     </>
   );
 }
@@ -602,48 +759,36 @@ function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="Tecnico"
-        title="Una marca chica puede verse seria si el trabajo esta ordenado."
-        body="rosFIX no se apoya en una vidriera grande. Se apoya en explicacion clara, revision real y una forma de trabajo consistente."
-        note="La confianza no sale de parecer enorme. Sale de decir la posta y sostenerla."
+        eyebrow="Sobre ROSFIX"
+        title="Resolver con criterio, comunicar con claridad y ensenar sin humo."
+        body="Leandro Palombo combina experiencia en reparacion de celulares, soporte tecnico, hardware y sistemas, con una formacion tecnica solida en informatica y una fuerte orientacion a explicar bien lo que hace."
+        note="ROSFIX toma esa base y la convierte en una forma de trabajo: diagnostico honesto, soporte real y cursos explicados como se deberian aprender."
         actions={
-          <a href="contacto.html" className="secondary-action">
-            Empezar una consulta
-            <ArrowRight size={16} />
-          </a>
+          <>
+            <a href="contacto.html" className="primary-action">
+              <MessageCircle size={17} />
+              Contactar ROSFIX
+            </a>
+            <a href="servicios.html" className="secondary-action">
+              Explorar servicios
+              <ArrowRight size={16} />
+            </a>
+          </>
         }
         aside={
           <div className="display-panel">
-            <img src="assets/bench-signal.svg" alt="Visual tecnico de rosFIX" />
+            <img src="assets/bench-signal.svg" alt="Visual tecnico y humano de ROSFIX" />
             <div className="display-note">
               <span>Perfil</span>
-              <strong>Tecnico independiente en Rosario</strong>
+              <strong>Reparacion, soporte, hardware, sistemas y formacion</strong>
             </div>
           </div>
         }
       />
 
-      <section className="section section-editorial shell detail-columns">
-        {aboutPoints.map(([title, body]) => (
-          <article key={title}>
-            <h2>{title}</h2>
-            <p>{body}</p>
-          </article>
-        ))}
-      </section>
-
-      <section className="section section-contrast shell split-callout">
-        <div>
-          <span>Direccion visual</span>
-          <h2>Dark swiss, textura de terminal y una paleta calida que no cae en el azul generico.</h2>
-        </div>
-        <div>
-          <p>
-            La web usa paneles duros, lineas finas, tipografia controlada y assets custom para transmitir
-            oficio. La idea es premium sin perder credibilidad de taller real.
-          </p>
-        </div>
-      </section>
+      <FounderSection />
+      <ExperienceSection />
+      <PlaceholderTestimonials />
     </>
   );
 }
@@ -653,28 +798,28 @@ function ContactPage() {
     <>
       <PageHero
         eyebrow="Contacto"
-        title="La consulta tiene que bajar friccion y mejorar la respuesta."
-        body="Se centraliza el formulario, WhatsApp y la informacion que conviene tener a mano para arrancar mejor."
-        note="Modelo, falla, urgencia y antecedentes valen mas que un mensaje corto sin contexto."
+        title="Reparar mejor. Entender mejor. Aprender mejor."
+        body="Servicio tecnico y formacion practica con una logica simple: decir la verdad, explicar bien y trabajar con responsabilidad."
+        note="Si queres consultar por un equipo, pedir una revision o saber mas sobre los cursos, escribime directamente."
         actions={
           <WhatsAppLink className="primary-action">
             <MessageCircle size={17} />
-            Ir directo a WhatsApp
+            Hablar por WhatsApp
           </WhatsAppLink>
         }
         aside={
           <div className="contact-side">
             <div>
-              <span>Zona</span>
-              <strong>Rosario y alrededores</strong>
+              <span>Ciudad</span>
+              <strong>Rosario, Santa Fe</strong>
             </div>
             <div>
-              <span>Canal</span>
-              <strong>WhatsApp como via principal</strong>
+              <span>Telefono</span>
+              <strong>+54 9 341 2008643</strong>
             </div>
             <div>
-              <span>Ideal para enviar</span>
-              <strong>Modelo, falla, fotos y urgencia</strong>
+              <span>Email</span>
+              <strong>{MAIL}</strong>
             </div>
           </div>
         }
@@ -683,26 +828,26 @@ function ContactPage() {
       <section className="section section-editorial shell contact-layout">
         <div>
           <div className="section-heading">
-            <span>Consulta</span>
-            <h2>Deja todo listo para una respuesta mejor</h2>
+            <span>Contacto</span>
+            <h2>Escribime directamente</h2>
           </div>
           <ContactForm />
         </div>
         <aside className="contact-aside">
           <div>
+            <UserCheck size={18} />
+            <strong>Atencion directa</strong>
+            <p>Cada caso se trata sin intermediarios y con comunicacion clara durante todo el proceso.</p>
+          </div>
+          <div>
+            <GraduationCap size={18} />
+            <strong>Cursos practicos</strong>
+            <p>Tambien podes escribir para consultar por cursos, metodologia y contenido formativo.</p>
+          </div>
+          <div>
             <MapPin size={18} />
-            <strong>Atencion local</strong>
-            <p>Contenido y SEO trabajados para Rosario, Santa Fe y consultas cercanas.</p>
-          </div>
-          <div>
-            <ShieldCheck size={18} />
-            <strong>Mensaje util</strong>
-            <p>Modelo, sintomas, golpes, humedad y revisiones previas ayudan a diagnosticar mejor.</p>
-          </div>
-          <div>
-            <Wrench size={18} />
-            <strong>Decision clara</strong>
-            <p>Si conviene reparar se avanza. Si no conviene, la respuesta tambien tiene que servirte.</p>
+            <strong>Base local</strong>
+            <p>Rosario, Santa Fe. Servicio tecnico, soporte y formacion con criterio real.</p>
           </div>
         </aside>
       </section>
