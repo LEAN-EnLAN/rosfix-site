@@ -1042,6 +1042,44 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
+.trust-overview__intro {
+  display: grid;
+  gap: 18px;
+  align-items: end;
+}
+.trust-overview__link {
+  justify-self: start;
+}
+.trust-overview__grid {
+  display: grid;
+  gap: clamp(1rem, 3vw, 1.5rem);
+}
+.trust-overview-card {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-strong);
+}
+.trust-overview-card__index {
+  color: var(--accent-soft);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.trust-overview-card h3 {
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+.trust-overview-card p {
+  margin: 0;
+  max-width: 24rem;
+  color: var(--muted);
+  line-height: 1.66;
+}
 .service-grid,
 .process-rail,
 .review-strip,
@@ -1381,6 +1419,13 @@ img { display: block; max-width: 100%; }
   }
   .services-overview__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .trust-overview__intro {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 28px;
+  }
+  .trust-overview__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .service-grid,
   .review-strip,

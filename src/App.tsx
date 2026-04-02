@@ -3,6 +3,7 @@ import type { FormEvent, ReactNode } from "react";
 import {
   ArrowRight,
   Check,
+  ChevronLeft,
   ChevronRight,
   HardDrive,
   MapPin,
@@ -52,6 +53,16 @@ type EditorialItem = {
   points?: string[];
 };
 
+type CarouselSlide = {
+  eyebrow: string;
+  kicker: string;
+  title: string;
+  accent: string;
+  statement: string;
+  supporting: string;
+  image: string;
+};
+
 const WA_NUMBER = "5493412008643";
 const MAIL = "leanplbo@gmail.com";
 
@@ -94,6 +105,36 @@ const featuredLines = [
   "Explicacion clara de principio a fin.",
 ];
 
+const editorialCarouselSlides: CarouselSlide[] = [
+  {
+    eyebrow: "Rosfix",
+    kicker: "¿SUENA BAJO?",
+    title: "No esta roto.",
+    accent: "Es suciedad.",
+    statement: "Un mejor diagnostico empieza hablando directo con quien revisa tu equipo.",
+    supporting: "Diagnostico cercano",
+    image: "assets/hero-devices.png",
+  },
+  {
+    eyebrow: "PC y notebooks",
+    kicker: "¿SE ARRASTRA?",
+    title: "No siempre es vieja.",
+    accent: "A veces pide mantenimiento.",
+    statement: "Temperatura, disco y memoria se leen antes de gastar en hardware porque no todo equipo lento necesita reemplazo.",
+    supporting: "Rendimiento con criterio",
+    image: "assets/workbench-grid.png",
+  },
+  {
+    eyebrow: "Diagnostico tecnico",
+    kicker: "¿FALLA POR MOMENTOS?",
+    title: "No se adivina.",
+    accent: "Se ordena.",
+    statement: "El criterio ordena el caso desde el primer mensaje para decir si conviene seguir, frenar o derivar sin inventar drama.",
+    supporting: "Decision clara",
+    image: "assets/bench-signal.png",
+  },
+];
+
 const processSteps = [
   ["01", "Escribis", "Contas que equipo es, que sintomas tiene y desde cuando pasa."],
   ["02", "Se revisa", "Se ordena el problema y se descartan supuestos antes de tocar piezas."],
@@ -102,9 +143,9 @@ const processSteps = [
 ] as const;
 
 const trustRows = [
-  ["Hablas con quien revisa", "Consulta, diagnostico y entrega pasan por la misma persona."],
-  ["Primero se confirma la falla", "No se cambia una pieza sin revisar."],
-  ["Si no conviene reparar, se dice", "La recomendacion tiene que cuidar tu plata."],
+  ["Hablas con quien revisa", "Sin intermediarios entre consulta, diagnostico y entrega."],
+  ["Primero se confirma la falla", "La revision viene antes que cambiar piezas."],
+  ["Si no conviene reparar, se dice", "La recomendacion tambien tiene que cuidar tu plata."],
 ] as const;
 
 const faq = [
@@ -470,11 +511,8 @@ function ServicesSection() {
         </a>
       </div>
       <div className="services-overview__grid">
-        {services.map(({ title, text, points, icon: Icon, image }) => (
+        {services.map(({ title, text, points, icon: Icon }) => (
           <article key={title} className="service-overview-card">
-            <div className="service-overview-card__media">
-              <img src={image} alt="" className="service-overview-card__image" />
-            </div>
             <div className="service-overview-card__body">
               <div className="service-overview-card__head">
                 <span className="service-overview-card__icon">
@@ -484,13 +522,95 @@ function ServicesSection() {
               </div>
               <p>{text}</p>
               <ul className="service-overview-card__points">
-                {points.slice(0, 2).map((item) => (
-                  <li key={item}>{item}</li>
+                {points.map((item) => (
+                  <li key={item}>
+                    <ChevronRight size={14} />
+                    <span>{item}</span>
+                  </li>
                 ))}
               </ul>
             </div>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function EditorialCarouselSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setCurrentIndex((value) => (value + 1) % editorialCarouselSlides.length);
+    }, 5600);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  const goTo = (index: number) => setCurrentIndex(index);
+  const goPrev = () => setCurrentIndex((value) => (value - 1 + editorialCarouselSlides.length) % editorialCarouselSlides.length);
+  const goNext = () => setCurrentIndex((value) => (value + 1) % editorialCarouselSlides.length);
+
+  return (
+    <section className="editorial-carousel" aria-label="Casos frecuentes en rosfix">
+      <div className="editorial-carousel__viewport">
+        <div
+          className="editorial-carousel__track"
+          style={{ transform: `translate3d(-${currentIndex * 100}%, 0, 0)` }}
+        >
+          {editorialCarouselSlides.map((slide) => (
+            <article key={slide.kicker} className="editorial-carousel__slide">
+              <div className="editorial-carousel__frame">
+                <div className="editorial-carousel__grid" aria-hidden="true" />
+                <div className="editorial-carousel__copy">
+                  <span>{slide.eyebrow}</span>
+                  <div className="editorial-carousel__headline">
+                    <strong>{slide.kicker}</strong>
+                    <em>{slide.title}</em>
+                    <b>{slide.accent}</b>
+                  </div>
+                </div>
+                <div className="editorial-carousel__media">
+                  <img src={slide.image} alt="" />
+                </div>
+                <div className="editorial-carousel__note">
+                  <span>{slide.supporting}</span>
+                  <p>{slide.statement}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div className="shell editorial-carousel__controls">
+        <div className="editorial-carousel__rail">
+          {editorialCarouselSlides.map((slide, index) => (
+            <button
+              key={slide.kicker}
+              type="button"
+              className={`editorial-carousel__index${index === currentIndex ? " is-active" : ""}`}
+              onClick={() => goTo(index)}
+              aria-label={`Ir a ${slide.kicker}`}
+            >
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{slide.supporting}</strong>
+            </button>
+          ))}
+        </div>
+
+        <div className="editorial-carousel__actions">
+          <button type="button" className="editorial-carousel__button" onClick={goPrev} aria-label="Slide anterior">
+            <ChevronLeft size={16} />
+          </button>
+          <div className="editorial-carousel__progress" aria-hidden="true">
+            <span style={{ transform: `scaleX(${(currentIndex + 1) / editorialCarouselSlides.length})` }} />
+          </div>
+          <button type="button" className="editorial-carousel__button" onClick={goNext} aria-label="Slide siguiente">
+            <ChevronRight size={16} />
+          </button>
+        </div>
       </div>
     </section>
   );
@@ -566,15 +686,23 @@ function ProcessRail() {
 
 function TrustSection() {
   return (
-    <section className="section section-editorial shell">
-      <div className="section-heading section-heading--compact">
-        <span>Confianza</span>
-        <h2>Directo, claro y sin vueltas.</h2>
+    <section className="section shell trust-overview">
+      <div className="trust-overview__intro">
+        <div className="section-heading section-heading--compact">
+          <span>Confianza</span>
+          <h2>Como trabaja rosfix.</h2>
+          <p>Menos vueltas, mejor lectura del caso y una decision clara.</p>
+        </div>
+        <WhatsAppLink className="secondary-action trust-overview__link" message="Hola Leandro, quiero consultar mi equipo por WhatsApp.">
+          Hablar por WhatsApp
+          <ArrowRight size={16} />
+        </WhatsAppLink>
       </div>
-      <div className="detail-columns">
-        {trustRows.map(([title, text]) => (
-          <article key={title}>
-            <h2>{title}</h2>
+      <div className="trust-overview__grid">
+        {trustRows.map(([title, text], index) => (
+          <article key={title} className="trust-overview-card">
+            <span className="trust-overview-card__index">{String(index + 1).padStart(2, "0")}</span>
+            <h3>{title}</h3>
             <p>{text}</p>
           </article>
         ))}
@@ -855,13 +983,8 @@ function HomePage() {
       />
 
       <FeatureRibbon />
+      <EditorialCarouselSection />
       <ServicesSection />
-      <ImageStatementSection
-        ariaLabel="Diagnostico cercano y atencion directa en rosfix"
-        eyebrow="Diagnostico cercano"
-        title="Un mejor diagnostico empieza hablando directo con quien revisa tu equipo."
-        image="assets/editorial-breath.png"
-      />
       <CoursesSection />
       <TrustSection />
     </>
