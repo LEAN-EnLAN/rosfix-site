@@ -1,0 +1,15 @@
+interface:
+  display_name: "ROSFIX Marketing"
+  short_description: "Operate ROSFIX branding, social content, art direction, and landing copy"
+  icon_small: "./assets/app-icon.svg"
+  icon_large: "./assets/app-logo.svg"
+  brand_color: "#C47A5A"
+  default_prompt: "Use ROSFIX Marketing to create or review a ROSFIX caption, carousel, reel, landing page, or visual prompt that stays on-brand."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "vercel"
+      description: "Vercel MCP server for ROSFIX website, previews, and deployment support"
+      transport: "streamable_http"
+      url: "https://mcp.vercel.com"

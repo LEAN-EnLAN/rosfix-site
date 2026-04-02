@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 128" role="img" aria-label="ROSFIX Marketing">
+  <rect width="360" height="128" rx="24" fill="#0D0D0D"/>
+  <path d="M42 38L90 86" stroke="#C47A5A" stroke-width="14" stroke-linecap="round"/>
+  <path d="M90 38L42 86" stroke="#EDEDED" stroke-width="10" stroke-linecap="round" opacity="0.92"/>
+  <text x="118" y="78" fill="#EDEDED" font-size="34" font-family="Inter, Helvetica Neue, Arial, sans-serif" letter-spacing="-1.2">ROSFIX</text>
+</svg>

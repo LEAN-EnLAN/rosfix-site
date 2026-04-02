@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "vercel": {
+      "type": "http",
+      "url": "https://mcp.vercel.com",
+      "note": "Use Vercel MCP when the ROSFIX marketing task touches the website, deployment, docs, previews, or runtime verification."
+    }
+  }
+}

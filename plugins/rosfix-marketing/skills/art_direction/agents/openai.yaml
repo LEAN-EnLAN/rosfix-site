@@ -1,0 +1,4 @@
+interface:
+  display_name: "Art Direction"
+  short_description: "Define ROSFIX composition, lighting, texture, and logo behavior"
+  default_prompt: "Use $art_direction to define ROSFIX composition, lighting, texture, typography behavior, logo placement, and postproduction for a visual piece."

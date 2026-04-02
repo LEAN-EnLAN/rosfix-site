@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brand Guard"
+  short_description: "Audit ROSFIX pieces against brand and business guardrails"
+  default_prompt: "Use $brand_guard to audit a ROSFIX caption, visual, carousel, reel, or landing page against brand coherence, business truth, and commercial clarity."

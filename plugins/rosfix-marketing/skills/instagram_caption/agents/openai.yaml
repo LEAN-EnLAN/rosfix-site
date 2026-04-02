@@ -1,0 +1,4 @@
+interface:
+  display_name: "Instagram Caption"
+  short_description: "Write ROSFIX captions ready to publish"
+  default_prompt: "Use $instagram_caption to write a ROSFIX Instagram caption that is direct, technical, clear, and ready to publish."

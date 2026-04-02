@@ -1,0 +1,4 @@
+interface:
+  display_name: "Carousel System"
+  short_description: "Build ROSFIX carousels slide by slide"
+  default_prompt: "Use $carousel_system to structure a ROSFIX Instagram carousel slide by slide with a strong hook, clear development, and a clean final CTA."

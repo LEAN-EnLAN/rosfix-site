@@ -1,0 +1,20 @@
+{
+  "name": "rosfix-local-marketplace",
+  "interface": {
+    "displayName": "ROSFIX Local Plugins"
+  },
+  "plugins": [
+    {
+      "name": "rosfix-marketing",
+      "source": {
+        "source": "local",
+        "path": "./plugins/rosfix-marketing"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

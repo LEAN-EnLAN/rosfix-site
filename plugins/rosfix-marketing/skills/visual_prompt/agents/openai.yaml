@@ -1,0 +1,4 @@
+interface:
+  display_name: "Visual Prompt"
+  short_description: "Generate ROSFIX image prompts and art-direction specs"
+  default_prompt: "Use $visual_prompt to create a ROSFIX image prompt with Swiss structure, terracotta identity, macro realism, and controlled negative space."

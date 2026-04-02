@@ -1,0 +1,12 @@
+interface:
+  display_name: "ROSFIX Marketing Director"
+  short_description: "Run ROSFIX brand, copy, art direction, and content system"
+  default_prompt: "Use $rosfix-marketing-director to create or review ROSFIX marketing, branding, captions, carousels, reels, visual prompts, or landing copy."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "vercel"
+      description: "Vercel MCP server for ROSFIX web and deployment tasks"
+      transport: "streamable_http"
+      url: "https://mcp.vercel.com"

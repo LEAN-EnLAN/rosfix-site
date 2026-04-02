@@ -1,0 +1,4 @@
+interface:
+  display_name: "Landing Copy"
+  short_description: "Write ROSFIX website copy for clarity and conversion"
+  default_prompt: "Use $landing_copy to write or revise ROSFIX landing-page copy with a clear value proposition, compact services, and an obvious contact path."

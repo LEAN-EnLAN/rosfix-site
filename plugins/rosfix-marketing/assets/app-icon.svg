@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="ROSFIX mark">
+  <rect width="128" height="128" rx="24" fill="#0D0D0D"/>
+  <path d="M36 36L92 92" stroke="#C47A5A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M92 36L36 92" stroke="#EDEDED" stroke-width="12" stroke-linecap="round" opacity="0.92"/>
+</svg>

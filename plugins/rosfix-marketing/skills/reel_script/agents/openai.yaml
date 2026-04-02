@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reel Script"
+  short_description: "Write ROSFIX reel hooks, shots, overlays, and CTA"
+  default_prompt: "Use $reel_script to write a short ROSFIX reel with a strong first-second hook, macro technical visuals, and a clean closing CTA."

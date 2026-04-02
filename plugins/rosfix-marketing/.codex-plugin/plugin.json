@@ -1,0 +1,45 @@
+{
+  "name": "rosfix-marketing",
+  "version": "0.1.0",
+  "description": "ROSFIX marketing, branding, creative direction, social content, and landing copy system.",
+  "author": {
+    "name": "ROSFIX",
+    "url": "https://rosfix.com.ar"
+  },
+  "homepage": "https://rosfix.com.ar",
+  "repository": "https://github.com/pulpo/rosfix",
+  "license": "UNLICENSED",
+  "keywords": [
+    "rosfix",
+    "marketing",
+    "branding",
+    "creative-direction",
+    "instagram",
+    "carousel",
+    "reels",
+    "landing-page",
+    "copywriting"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "ROSFIX Marketing",
+    "shortDescription": "Marketing, branding, art direction, captions, carousels, reels, and landing copy for ROSFIX",
+    "longDescription": "Use ROSFIX Marketing to operate as the official ROSFIX brand, copy, and creative direction agent across Instagram, visual prompts, carousels, reels, web copy, and brand validation while respecting the business's real technical limits.",
+    "developerName": "ROSFIX",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Interactive"
+    ],
+    "websiteURL": "https://rosfix.com.ar",
+    "privacyPolicyURL": "https://rosfix.com.ar",
+    "termsOfServiceURL": "https://rosfix.com.ar",
+    "defaultPrompt": "Use ROSFIX Marketing to create or review a ROSFIX caption, carousel, reel, landing page, or visual prompt that stays on-brand and commercially clear.",
+    "brandColor": "#C47A5A",
+    "composerIcon": "./assets/app-icon.svg",
+    "logo": "./assets/app-logo.svg",
+    "screenshots": []
+  }
+}
