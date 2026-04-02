@@ -32,6 +32,19 @@ type ServiceItem = {
   image: string;
 };
 
+type CourseOffer = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  audience: string;
+  format: string;
+  status: string;
+  points: string[];
+  message: string;
+};
+
+type HeroFact = readonly [string, string];
+
 type EditorialItem = {
   eyebrow?: string;
   title: string;
@@ -44,44 +57,32 @@ const MAIL = "leanplbo@gmail.com";
 
 const pages: PageConfig[] = [
   { key: "home", title: "Inicio", intro: "Servicio tecnico independiente en Rosario.", path: "./" },
-  { key: "services", title: "Servicios", intro: "Celulares, notebooks y PC con criterio tecnico.", path: "servicios.html" },
-  { key: "process", title: "Proceso", intro: "Diagnostico, revision y decision con criterio.", path: "proceso.html" },
-  { key: "about", title: "Tecnico", intro: "La forma de trabajo detras de rosfix.", path: "sobre-rosfix.html" },
-  { key: "contact", title: "Contacto", intro: "WhatsApp directo y formulario corto.", path: "contacto.html" },
+  { key: "services", title: "Servicios", intro: "Celulares, notebooks y PC.", path: "servicios.html" },
+  { key: "process", title: "Proceso", intro: "Diagnostico y decision claros.", path: "proceso.html" },
+  { key: "about", title: "Tecnico", intro: "Criterio tecnico, sin humo.", path: "sobre-rosfix.html" },
+  { key: "contact", title: "Contacto", intro: "WhatsApp directo.", path: "contacto.html" },
 ];
 
 const services: ServiceItem[] = [
   {
     title: "PC y notebooks",
     icon: HardDrive,
-    text: "Diagnostico de fallas, mantenimiento, optimizacion y reparacion de equipos de escritorio y portatiles. La prioridad es entender la causa real antes de intervenir.",
-    points: [
-      "Rendimiento, temperatura y mantenimiento",
-      "Discos, memoria, sistema y hardware comun",
-      "Revision responsable antes de cambiar piezas",
-    ],
+    text: "Mantenimiento, rendimiento y mejoras puntuales para equipos de uso real.",
+    points: ["Temperatura, limpieza y rendimiento", "Disco, memoria y sistema"],
     image: "assets/workbench-grid.png",
   },
   {
     title: "Celulares",
     icon: MonitorSmartphone,
-    text: "Reparacion de dispositivos moviles, diagnostico de fallas comunes, reemplazo de partes y resolucion de problemas frecuentes en equipos Apple y Android.",
-    points: [
-      "Diagnostico de fallas comunes",
-      "Reemplazo de partes y criterio tecnico",
-      "Trabajo claro orientado a resultados concretos",
-    ],
+    text: "Fallas comunes, reemplazo de partes y puesta a punto para uso diario.",
+    points: ["Pantalla, bateria y carga", "Cuentas, traspasos y configuracion"],
     image: "assets/hero-devices.png",
   },
   {
     title: "Diagnostico tecnico",
     icon: Wrench,
-    text: "Evaluacion precisa para detectar fallas de hardware, conectividad o sistema. La prioridad no es vender una reparacion: es decir con honestidad que pasa y que conviene hacer.",
-    points: [
-      "Diagnostico honesto antes de intervenir",
-      "Comunicacion clara sobre opciones reales",
-      "Criterio tecnico por encima del automatismo",
-    ],
+    text: "Revision para saber si conviene seguir, frenar o derivar.",
+    points: ["Diagnostico antes de intervenir", "Opciones claras y decision util"],
     image: "assets/bench-signal.png",
   },
 ];
@@ -101,9 +102,9 @@ const processSteps = [
 ] as const;
 
 const trustRows = [
-  ["Hablas con quien revisa", "La consulta, el diagnostico y la entrega pasan por la misma persona."],
-  ["Primero se confirma la falla", "No se cambia una pieza porque si. Primero se revisa y despues se decide."],
-  ["Si no conviene reparar, se dice", "La recomendacion tiene que cuidar tu plata, no empujarte a cerrar igual."],
+  ["Hablas con quien revisa", "Consulta, diagnostico y entrega pasan por la misma persona."],
+  ["Primero se confirma la falla", "No se cambia una pieza sin revisar."],
+  ["Si no conviene reparar, se dice", "La recomendacion tiene que cuidar tu plata."],
 ] as const;
 
 const faq = [
@@ -136,33 +137,49 @@ const experience = [
 const servicesEditorialBlocks: EditorialItem[] = [
   {
     eyebrow: "android e iphone",
-    title: "Celulares con fallas comunes, traspasos y orden tecnico.",
-    text: "Hay equipos que necesitan limpieza, bateria, modulo, pin o una buena revision antes de decidir si conviene reparar. Tambien hay valor en configurar, ordenar y dejar claro que datos y cuentas estan en juego.",
+    title: "Celulares con fallas comunes y traspasos.",
+    text: "Bateria, modulo, pin, configuraciones, cuentas y orden general.",
   },
   {
     eyebrow: "pc y notebook",
-    title: "Equipos lentos o inestables que todavia pueden rendir mejor.",
-    text: "Formateo, diagnostico, mejora funcional, armado y revision de piezas basicas para equipos de uso real. La idea no es prometer potencia infinita: es dejar claro hasta donde conviene llegar.",
+    title: "PC y notebooks que todavia pueden rendir mejor.",
+    text: "Mantenimiento, formateo, mejoras puntuales y revision de hardware comun.",
   },
   {
     eyebrow: "uso cotidiano",
-    title: "Problemas chicos que igual traban tu dia entero.",
-    text: "WhatsApp, cuentas, traspasos, configuraciones especificas, lentitud y desorden digital tambien forman parte del servicio. Son cosas que muchos minimizan, pero son exactamente las que hacen perder tiempo todos los dias.",
+    title: "Problemas chicos que frenan todo.",
+    text: "WhatsApp, cuentas, lentitud y configuraciones que hacen perder tiempo.",
   },
 ];
 
-const servicesEditorialTruths: EditorialItem[] = [
+const courses: CourseOffer[] = [
   {
-    title: "No todo necesita un cambio completo.",
-    text: "Muchas veces alcanza con revisar, limpiar, reordenar o descartar una sospecha equivocada antes de gastar en piezas nuevas.",
+    eyebrow: "curso 01",
+    title: "Diagnostico con criterio para fallas reales.",
+    description: "Para aprender a leer sintomas y revisar con mas orden.",
+    audience: "Quienes arrancan o revisan por cuenta propia.",
+    format: "Clases cortas y casos concretos.",
+    status: "Primera edicion en preparacion.",
+    points: [
+      "Como preguntar mejor y reunir contexto util",
+      "Que revisar primero en equipos comunes",
+      "Cuando seguir, frenar o derivar",
+    ],
+    message: "Hola Leandro, quiero enterarme primero del curso de diagnostico con criterio.",
   },
   {
-    title: "A veces hace falta diagnostico, no gasto.",
-    text: "La utilidad no siempre esta en reparar de inmediato. A veces esta en entender bien que falla y que salida tiene sentido para vos.",
-  },
-  {
-    title: "Tambien resolvemos lo que otros patean.",
-    text: "Configurar, destrabar, explicar y dejar un equipo usable tambien es servicio tecnico cuando el problema es real.",
+    eyebrow: "curso 02",
+    title: "Mantenimiento y criterio para PC y notebooks.",
+    description: "Mejoras reales, mantenimiento responsable y hardware basico sin humo.",
+    audience: "Usuarios curiosos y tecnicos en etapa inicial.",
+    format: "Recorridos guiados y chequeos utiles.",
+    status: "Contenido en desarrollo.",
+    points: [
+      "Temperatura, limpieza y rendimiento",
+      "Memoria, disco y sistema: que cambia",
+      "Hasta donde conviene invertir",
+    ],
+    message: "Hola Leandro, me interesa el curso de mantenimiento y criterio para PC y notebooks.",
   },
 ];
 
@@ -170,37 +187,22 @@ const processEditorialSteps: EditorialItem[] = [
   {
     eyebrow: "01",
     title: "Recepcion y estado inicial.",
-    text: "Se ordena que equipo es, que sintomas tiene y en que estado entra. El problema se toma desde informacion concreta, no desde supuestos.",
+    text: "Se ordena el caso desde informacion concreta.",
   },
   {
     eyebrow: "02",
     title: "Diagnostico con plazo claro.",
-    text: "En hasta 2 dias ya deberias saber que pasa, que se descarto y si conviene avanzar o frenar.",
+    text: "En hasta 2 dias ya deberias saber que pasa.",
   },
   {
     eyebrow: "03",
     title: "Presupuesto despues de revisar.",
-    text: "La cifra sale una vez que el diagnostico ordena el caso. Primero verdad tecnica, despues decision.",
+    text: "Primero verdad tecnica. Despues decision.",
   },
   {
     eyebrow: "04",
     title: "Reparacion o derivacion con contexto.",
-    text: "Si se sigue con rosfix, hay pasos claros. Si no, igual te llevas una base util para continuar con otro tecnico.",
-  },
-];
-
-const processEditorialTruths: EditorialItem[] = [
-  {
-    title: "No desaparece tu equipo.",
-    text: "Hay estado inicial, avance identificable y cierre claro. No quedas esperando sin saber nada.",
-  },
-  {
-    title: "No desaparece la informacion.",
-    text: "Aunque el trabajo no siga aca, el diagnostico deja contexto, descarte y una salida mas clara.",
-  },
-  {
-    title: "Siempre vas a saber la verdad.",
-    text: "Si el arreglo no conviene, si falta una pieza o si el caso pide derivacion, se dice sin vueltas.",
+    text: "Si no sigue aca, igual salis con una base util.",
   },
 ];
 
@@ -208,32 +210,17 @@ const aboutEditorialPrinciples: EditorialItem[] = [
   {
     eyebrow: "criterio",
     title: "No tomo todo.",
-    text: "Se toman equipos y problemas de complejidad media que se puedan resolver bien, con tiempos razonables y comunicacion clara.",
+    text: "Se toman casos que se puedan resolver bien.",
   },
   {
     eyebrow: "limite",
     title: "Si no conviene, se dice.",
-    text: "Decir que no a una reparacion que no cierra tambien protege al cliente. El valor no esta en intervenir por orgullo.",
+    text: "Forzar una reparacion tambien puede ser un error.",
   },
   {
     eyebrow: "utilidad",
     title: "Aunque no lo haga yo, igual te tiene que servir.",
-    text: "Un diagnostico util, una derivacion ordenada o una recomendacion honesta tambien forman parte del trabajo.",
-  },
-];
-
-const aboutEditorialTruths: EditorialItem[] = [
-  {
-    title: "Limites claros como forma de cuidado.",
-    text: "No prometer cualquier cosa evita hacer perder tiempo, plata y contexto.",
-  },
-  {
-    title: "Equipos viejos o rescatables con vida util.",
-    text: "Cuando todavia hay margen real, se evalua con criterio. Cuando ya no lo hay, se explica.",
-  },
-  {
-    title: "Primero criterio, despues intervencion.",
-    text: "La honestidad tecnica no se agrega al final: ordena la decision desde el principio.",
+    text: "Un diagnostico util o una buena derivacion tambien cuentan.",
   },
 ];
 
@@ -259,55 +246,149 @@ function WhatsAppLink({
 
 function Nav({ currentPage }: { currentPage: PageKey }) {
   const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const close = () => setOpen(false);
-    window.addEventListener("resize", close);
-    return () => window.removeEventListener("resize", close);
+    const handleScroll = () => setIsScrolled(window.scrollY > 28);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      return undefined;
+    }
+
+    const shouldLock = open && window.innerWidth < 768;
+    const previousOverflow = document.body.style.overflow;
+
+    if (shouldLock) {
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [currentPage]);
+
+  const closeMenu = () => setOpen(false);
+
   return (
-    <header className="site-header">
-      <div className="shell flex items-center justify-between gap-6">
-        <a href="./" className="brand-mark" aria-label="rosfix inicio">
-          <img src="assets/rosfix-mark.svg" alt="" className="brand-mark__logo" />
-          <span>
-            <strong>rosfix</strong>
-            <small>servicio tecnico en Rosario</small>
-          </span>
-        </a>
+    <header className={`site-header${isScrolled ? " is-scrolled" : ""}${open ? " is-open" : ""}`}>
+      <div className="shell site-header__inner">
+        <div className="site-header__row">
+          <a href="./" className="brand-mark" aria-label="rosfix inicio" onClick={closeMenu}>
+            <img src="assets/rosfix-mark.svg" alt="" className="brand-mark__logo" />
+            <span>
+              <strong>rosfix</strong>
+              <small>Diagnostico claro en Rosario</small>
+            </span>
+          </a>
 
-        <nav className="nav-desktop">
-          {pages.map((page) => (
-            <a key={page.key} href={page.path} className={page.key === currentPage ? "is-active" : undefined}>
-              {page.title}
-            </a>
-          ))}
-        </nav>
+          <nav className="nav-desktop" aria-label="Principal">
+            {pages.map((page) => (
+              <a
+                key={page.key}
+                href={page.path}
+                className={page.key === currentPage ? "is-active" : undefined}
+              >
+                {page.title}
+              </a>
+            ))}
+          </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <WhatsAppLink className="action-link">
-            <MessageCircle size={16} />
-            Solicitar diagnostico
-          </WhatsAppLink>
+          <div className="site-header__actions">
+            <WhatsAppLink className="action-link site-header__cta" message="Hola Leandro, quiero consultar por un diagnostico.">
+              <MessageCircle size={16} />
+              Solicitar diagnostico
+            </WhatsAppLink>
+          </div>
+
+          <button
+            className="menu-button"
+            onClick={() => setOpen((value) => !value)}
+            aria-label={open ? "Cerrar menu" : "Abrir menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav-panel"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
-
-        <button className="menu-button md:hidden" onClick={() => setOpen((value) => !value)} aria-label="Abrir menu">
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
       </div>
 
       {open && (
-        <div className="shell mobile-nav md:hidden">
-          {pages.map((page) => (
-            <a key={page.key} href={page.path} className={page.key === currentPage ? "is-active" : undefined}>
-              {page.title}
-            </a>
-          ))}
-          <WhatsAppLink className="action-link">
-            <MessageCircle size={16} />
-            Hablar por WhatsApp
-          </WhatsAppLink>
+        <div className="mobile-nav-wrap">
+          <div
+            id="mobile-nav-panel"
+            className="shell mobile-nav"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu principal"
+          >
+            <div className="mobile-nav__intro">
+              <span>Servicio tecnico</span>
+              <p>Diagnostico real, trato directo y seguimiento por WhatsApp.</p>
+            </div>
+
+            <nav className="mobile-nav__links" aria-label="Principal mobile">
+              {pages.map((page) => (
+                <a
+                  key={page.key}
+                  href={page.path}
+                  className={page.key === currentPage ? "is-active" : undefined}
+                  onClick={closeMenu}
+                >
+                  <strong>{page.title}</strong>
+                  <span>{page.intro}</span>
+                </a>
+              ))}
+            </nav>
+
+            <div className="mobile-nav__footer">
+              <WhatsAppLink
+                className="primary-action mobile-nav__cta"
+                message="Hola Leandro, quiero pedir un diagnostico para mi equipo."
+              >
+                <MessageCircle size={16} />
+                Pedir diagnostico
+              </WhatsAppLink>
+              <a href="contacto.html" className="secondary-action mobile-nav__contact" onClick={closeMenu}>
+                Ver contacto
+                <ArrowRight size={16} />
+              </a>
+            </div>
+          </div>
         </div>
       )}
     </header>
@@ -321,6 +402,8 @@ function PageHero({
   note,
   actions,
   aside,
+  facts,
+  variant = "home",
 }: {
   eyebrow: string;
   title: string;
@@ -328,9 +411,11 @@ function PageHero({
   note?: string;
   actions?: ReactNode;
   aside: ReactNode;
+  facts?: HeroFact[];
+  variant?: "home" | "inner";
 }) {
   return (
-    <section className="hero-block shell">
+    <section className={`hero-block shell hero-block--${variant}`}>
       <div className="hero-copy">
         <div className="eyebrow-line">
           <span>{eyebrow}</span>
@@ -339,6 +424,16 @@ function PageHero({
         </div>
         <h1>{title}</h1>
         <p>{body}</p>
+        {facts?.length ? (
+          <dl className="hero-facts" aria-label="Datos clave">
+            {facts.map(([label, value]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
         {note ? <div className="hero-note">{note}</div> : null}
         {actions ? <div className="hero-actions">{actions}</div> : null}
       </div>
@@ -362,35 +457,86 @@ function FeatureRibbon() {
 
 function ServicesSection() {
   return (
-    <section className="section shell">
-      <div className="section-heading">
-        <span>Servicios</span>
-        <h2>Hardware, celulares y diagnostico con criterio real</h2>
-        <p>No se trata de listar cien arreglos. Se trata de mostrar que cada problema se revisa con orden y se explica sin humo.</p>
+    <section className="section shell services-overview">
+      <div className="services-overview__intro">
+        <div className="section-heading section-heading--compact">
+          <span>Servicios</span>
+          <h2>Lo que rosfix toma hoy.</h2>
+          <p>Celulares, notebooks, PC y diagnostico con criterio.</p>
+        </div>
+        <a href="servicios.html" className="secondary-action services-overview__link">
+          Ver servicios completos
+          <ArrowRight size={16} />
+        </a>
       </div>
-      <div className="service-grid service-grid-wide">
+      <div className="services-overview__grid">
         {services.map(({ title, text, points, icon: Icon, image }) => (
-          <article key={title} className="service-panel">
-            <div className="service-panel__content">
-              <div className="service-panel__head">
-                <Icon size={18} />
+          <article key={title} className="service-overview-card">
+            <div className="service-overview-card__media">
+              <img src={image} alt="" className="service-overview-card__image" />
+            </div>
+            <div className="service-overview-card__body">
+              <div className="service-overview-card__head">
+                <span className="service-overview-card__icon">
+                  <Icon size={16} />
+                </span>
                 <strong>{title}</strong>
               </div>
-              <div className="service-panel__body">
-                <p>{text}</p>
-                <ul>
-                  {points.map((item) => (
-                    <li key={item}>
-                      <ChevronRight size={14} />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              <p>{text}</p>
+              <ul className="service-overview-card__points">
+                {points.slice(0, 2).map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function CoursesSection() {
+  return (
+    <section className="section shell courses-section">
+      <div className="section-heading section-heading--compact courses-section__heading">
+        <span>Cursos</span>
+        <h2>Aprender criterio tecnico.</h2>
+      </div>
+      <div className="courses-grid">
+        {courses.map(({ eyebrow, title, description, audience, format, status, points, message }) => (
+          <article key={title} className="course-panel">
+            <div className="course-panel__header">
+              <span>{eyebrow}</span>
+              <strong>{title}</strong>
+              <p>{description}</p>
+            </div>
+            <div className="course-panel__facts">
+              <div>
+                <span>Para quien</span>
+                <p>{audience}</p>
+              </div>
+              <div>
+                <span>Formato</span>
+                <p>{format}</p>
+              </div>
+              <div>
+                <span>Estado</span>
+                <p>{status}</p>
               </div>
             </div>
-            <div className="service-panel__media">
-              <img src={image} alt="" className="service-panel__image" />
-            </div>
+            <ul className="course-panel__points">
+              {points.map((item) => (
+                <li key={item}>
+                  <ChevronRight size={14} />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <WhatsAppLink className="action-link course-panel__action" message={message}>
+              <MessageCircle size={16} />
+              Quiero enterarme primero
+            </WhatsAppLink>
           </article>
         ))}
       </div>
@@ -421,9 +567,9 @@ function ProcessRail() {
 function TrustSection() {
   return (
     <section className="section section-editorial shell">
-      <div className="section-heading">
+      <div className="section-heading section-heading--compact">
         <span>Confianza</span>
-        <h2>La diferencia esta en como se toma la decision tecnica</h2>
+        <h2>Directo, claro y sin vueltas.</h2>
       </div>
       <div className="detail-columns">
         {trustRows.map(([title, text]) => (
@@ -654,8 +800,8 @@ function Footer() {
       <div className="shell footer-grid">
         <div>
           <strong>rosfix</strong>
-          <p>Diagnostico tecnico especializado.</p>
-          <p>Servicio tecnico local en Rosario con criterio, seguimiento directo y explicacion clara.</p>
+          <p>Diagnostico claro y trato directo.</p>
+          <p>Servicio tecnico en Rosario.</p>
         </div>
         <div>
           <span>Paginas</span>
@@ -682,9 +828,9 @@ function HomePage() {
     <>
       <PageHero
         eyebrow="rosfix"
-        title="Diagnostico real, atencion directa y trabajo tecnico con criterio."
-        body="rosfix es un servicio tecnico independiente para celulares, notebooks y PC en Rosario, pensado para quienes prefieren entender bien que pasa antes de gastar."
-        note="No se vende humo con presupuestos instantaneos. Primero se revisa, se explica y despues se decide."
+        title="Diagnostico real para celulares, notebooks y PC."
+        body="Servicio tecnico independiente en Rosario."
+        note="Atencion directa y criterio real."
         actions={
           <>
             <WhatsAppLink className="primary-action">
@@ -716,23 +862,8 @@ function HomePage() {
         title="Un mejor diagnostico empieza hablando directo con quien revisa tu equipo."
         image="assets/editorial-breath.png"
       />
+      <CoursesSection />
       <TrustSection />
-
-      <section className="section section-contrast shell split-callout">
-        <div>
-          <span>Manifiesto</span>
-          <h2>Hay servicios que trabajan por volumen. rosfix prefiere trabajar con criterio.</h2>
-        </div>
-        <div>
-          <p>
-            Muchas veces el problema no es solo que algo falle, sino que nadie se tome el tiempo de
-            diagnosticarlo bien, explicarlo bien y resolverlo con responsabilidad.
-          </p>
-          <p>
-            La atencion es directa. El diagnostico es honesto. Y si algo no conviene, se dice.
-          </p>
-        </div>
-      </section>
     </>
   );
 }
@@ -741,10 +872,14 @@ function ServicesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Servicios tecnicos"
-        title="Servicio tecnico con criterio y comunicacion clara."
-        body="Reparacion de computadoras y celulares con una logica simple: diagnostico real, trabajo responsable y seguimiento directo."
-        note="La especialidad no se comunica como show tecnico. Se comunica como decisiones correctas sobre problemas reales."
+        eyebrow="Servicios"
+        title="Celulares, notebooks y PC con criterio."
+        body="Fallas comunes y decisiones utiles sobre equipos de uso real."
+        facts={[
+          ["Equipos", "Celulares, notebooks y PC"],
+          ["Enfoque", "Fallas comunes y decisiones utiles"],
+          ["Trato", "Directo por WhatsApp"],
+        ]}
         actions={
           <>
             <WhatsAppLink className="primary-action">
@@ -762,30 +897,24 @@ function ServicesPage() {
             <img src="assets/hero-devices.png" alt="Visual tecnico de dispositivos y herramientas" />
             <div className="display-note">
               <span>Foco</span>
-              <strong>Hardware, celulares y diagnostico responsable</strong>
+              <strong>Hardware comun, celulares y diagnostico responsable</strong>
             </div>
           </div>
         }
+        variant="inner"
       />
 
       <EditorialNarrativeSection
         eyebrow="Servicios"
-        title="Problemas cotidianos, explicados y resueltos."
-        intro="rosfix no entra solo cuando hay una reparacion grande. Tambien entra cuando hace falta ordenar, configurar, recuperar contexto y destrabar equipos que siguen teniendo solucion."
+        title="Problemas cotidianos, resueltos con orden."
+        intro="Celulares, notebooks y PC con foco en uso real."
         items={servicesEditorialBlocks}
-      />
-
-      <EditorialNarrativeSection
-        eyebrow="Criterio"
-        title="La idea no es sumar trabajo: es bajar ruido."
-        intro="El valor no siempre esta en cambiar piezas. Muchas veces esta en revisar bien, descartar una sospecha equivocada y dejarte una salida clara."
-        items={servicesEditorialTruths}
       />
 
       <ContentArchive
         eyebrow="Consultas"
         title="Dudas frecuentes antes de traer tu equipo"
-        summary="Presupuesto, accesorios, datos sensibles y otras consultas practicas para llegar con mejor contexto."
+        summary="Presupuesto, accesorios y contexto util antes de revisar."
       >
         <FaqSection
           eyebrow="Consultas"
@@ -802,9 +931,13 @@ function ProcessPage() {
     <>
       <PageHero
         eyebrow="Proceso"
-        title="Mas criterio. Menos automatismo."
-        body="Atencion directa, diagnostico honesto y una forma de trabajo pensada para explicar bien que pasa con tu equipo."
-        note="No se trata de aparentar complejidad. Se trata de entender bien el problema y decidir con informacion."
+        title="Diagnostico claro desde el primer mensaje."
+        body="Cada caso entra con contexto y sale con una decision clara."
+        facts={[
+          ["Diagnostico", "Hasta 48 hs"],
+          ["Presupuesto", "Despues de revisar"],
+          ["Seguimiento", "Directo y claro"],
+        ]}
         actions={
           <>
             <WhatsAppLink className="primary-action">
@@ -822,10 +955,11 @@ function ProcessPage() {
             <img src="assets/workbench-grid.png" alt="Panel de metodo y diagnostico de rosfix" />
             <div className="display-note">
               <span>Metodo</span>
-              <strong>Se evalua, se explica y recien despues se decide</strong>
+              <strong>Se evalua, se explica y despues se decide</strong>
             </div>
           </div>
         }
+        variant="inner"
       />
 
       <ImageStatementSection
@@ -839,21 +973,14 @@ function ProcessPage() {
       <EditorialNarrativeSection
         eyebrow="Proceso"
         title="Tu equipo no entra en un limbo tecnico."
-        intro="Hay recepcion, diagnostico con plazo, presupuesto despues de revisar y una salida clara aunque el trabajo no siga con rosfix."
+        intro="Recepcion, diagnostico, decision y salida clara."
         items={processEditorialSteps}
-      />
-
-      <EditorialNarrativeSection
-        eyebrow="Verdades"
-        title="Siempre deberias saber donde estas parado."
-        intro="El proceso esta pensado para bajar ansiedad, no para fabricar misterio. La informacion tambien forma parte del servicio."
-        items={processEditorialTruths}
       />
 
       <ContentArchive
         eyebrow="Consultas"
         title="Dudas frecuentes sobre revision y tiempos"
-        summary="Seguimiento, aprobaciones y decisiones practicas para saber que esperar durante cada etapa."
+        summary="Seguimiento, aprobaciones y tiempos reales durante cada etapa."
       >
         <FaqSection
           eyebrow="Consultas"
@@ -869,10 +996,14 @@ function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="Sobre rosfix"
-        title="Resolver con criterio y comunicar con claridad."
-        body="Leandro Palombo combina experiencia en reparacion de celulares, soporte tecnico, hardware y sistemas, con una forma de trabajo orientada a explicar bien lo que hace."
-        note="rosfix toma esa base y la convierte en una manera de trabajar: diagnostico honesto, soporte real y decisiones tecnicas claras."
+        eyebrow="Tecnico"
+        title="Tecnico independiente, criterio claro."
+        body="Trabajo con fallas comunes y una regla simple: no prometer de mas."
+        facts={[
+          ["Base", "Rosario, Santa Fe"],
+          ["Alcance", "Celulares, notebooks y PC"],
+          ["Limite", "Sin prometer de mas"],
+        ]}
         actions={
           <>
             <a href="contacto.html" className="primary-action">
@@ -894,26 +1025,20 @@ function AboutPage() {
             </div>
           </div>
         }
+        variant="inner"
       />
 
       <EditorialNarrativeSection
         eyebrow="Tecnico"
         title="Criterio tecnico, honestidad y limites claros."
-        intro="rosfix no intenta tomar cualquier cosa. Toma lo que se puede resolver bien y dice con claridad cuando una intervencion no tiene sentido."
+        intro="Se toma lo que se puede resolver bien."
         items={aboutEditorialPrinciples}
-      />
-
-      <EditorialNarrativeSection
-        eyebrow="Honestidad"
-        title="La utilidad tambien esta en saber hasta donde conviene llegar."
-        intro="Un buen diagnostico no se mide solo por lo que repara. Tambien se mide por lo que evita hacerte perder."
-        items={aboutEditorialTruths}
       />
 
       <ContentArchive
         eyebrow="Consultas"
         title="Dudas frecuentes sobre criterio y forma de trabajo"
-        summary="Alcance real, limites tecnicos y la manera en que se comunica cada caso desde el inicio."
+        summary="Alcance real, limites tecnicos y decisiones desde el inicio."
       >
         <FaqSection
           eyebrow="Consultas"
@@ -930,9 +1055,13 @@ function ContactPage() {
     <>
       <PageHero
         eyebrow="Contacto"
-        title="Si el equipo esta fallando, arranquemos por la informacion correcta."
-        body="Servicio tecnico con una logica simple: decir la verdad, explicar bien y trabajar con responsabilidad."
-        note="Si queres consultar por un equipo o pedir una revision, escribime directamente."
+        title="Contame que le pasa a tu equipo."
+        body="Con una descripcion clara ya se puede ordenar el caso."
+        facts={[
+          ["Canal", "WhatsApp directo"],
+          ["Ciudad", "Rosario, Santa Fe"],
+          ["Trato", "Sin intermediarios"],
+        ]}
         actions={
           <WhatsAppLink className="primary-action">
             <MessageCircle size={17} />
@@ -955,6 +1084,7 @@ function ContactPage() {
             </div>
           </div>
         }
+        variant="inner"
       />
 
       <section className="section section-editorial shell contact-layout">
@@ -969,17 +1099,17 @@ function ContactPage() {
           <div>
             <UserCheck size={18} />
             <strong>Atencion directa</strong>
-            <p>Cada caso se trata sin intermediarios y con comunicacion clara durante todo el proceso.</p>
+            <p>Consulta y seguimiento sin intermediarios.</p>
           </div>
           <div>
             <ShieldCheck size={18} />
             <strong>Diagnostico honesto</strong>
-            <p>La prioridad es entender bien el problema y decirte con claridad que conviene hacer.</p>
+            <p>Primero entender bien el problema.</p>
           </div>
           <div>
             <MapPin size={18} />
             <strong>Base local</strong>
-            <p>Rosario, Santa Fe. Servicio tecnico local con criterio real y seguimiento directo.</p>
+            <p>Rosario, Santa Fe.</p>
           </div>
         </aside>
       </section>
@@ -994,12 +1124,6 @@ export default function App({ page }: { page: PageKey }) {
     <div className="site-frame">
       <Nav currentPage={current.key} />
       <main>
-        {page === "home" ? null : (
-          <section className="page-intro shell">
-            <span>{current.title}</span>
-            <p>{current.intro}</p>
-          </section>
-        )}
         {page === "home" && <HomePage />}
         {page === "services" && <ServicesPage />}
         {page === "process" && <ProcessPage />}
