@@ -32,6 +32,13 @@ type ServiceItem = {
   image: string;
 };
 
+type EditorialItem = {
+  eyebrow?: string;
+  title: string;
+  text: string;
+  points?: string[];
+};
+
 const WA_NUMBER = "5493412008643";
 const MAIL = "leanplbo@gmail.com";
 
@@ -39,7 +46,7 @@ const pages: PageConfig[] = [
   { key: "home", title: "Inicio", intro: "Servicio tecnico independiente en Rosario.", path: "./" },
   { key: "services", title: "Servicios", intro: "Celulares, notebooks y PC con criterio tecnico.", path: "servicios.html" },
   { key: "process", title: "Proceso", intro: "Diagnostico, revision y decision con criterio.", path: "proceso.html" },
-  { key: "about", title: "Tecnico", intro: "La forma de trabajo detras de rosFIX.", path: "sobre-rosfix.html" },
+  { key: "about", title: "Tecnico", intro: "La forma de trabajo detras de rosfix.", path: "sobre-rosfix.html" },
   { key: "contact", title: "Contacto", intro: "WhatsApp directo y formulario corto.", path: "contacto.html" },
 ];
 
@@ -53,7 +60,7 @@ const services: ServiceItem[] = [
       "Discos, memoria, sistema y hardware comun",
       "Revision responsable antes de cambiar piezas",
     ],
-    image: "assets/workbench-grid.svg",
+    image: "assets/workbench-grid.png",
   },
   {
     title: "Celulares",
@@ -64,7 +71,7 @@ const services: ServiceItem[] = [
       "Reemplazo de partes y criterio tecnico",
       "Trabajo claro orientado a resultados concretos",
     ],
-    image: "assets/hero-devices.svg",
+    image: "assets/hero-devices.png",
   },
   {
     title: "Diagnostico tecnico",
@@ -75,7 +82,7 @@ const services: ServiceItem[] = [
       "Comunicacion clara sobre opciones reales",
       "Criterio tecnico por encima del automatismo",
     ],
-    image: "assets/bench-signal.svg",
+    image: "assets/bench-signal.png",
   },
 ];
 
@@ -100,16 +107,134 @@ const trustRows = [
 ] as const;
 
 const faq = [
-  ["Trabajas solo con celulares?", "No. rosFIX trabaja con celulares, notebooks y PC de escritorio."],
-  ["Pasas presupuesto antes de revisar?", "Se puede orientar por mensaje, pero el presupuesto real sale despues de revisar el equipo."],
-  ["Atendes personalmente?", "Si. Uno de los diferenciales principales es justamente la atencion directa y la comunicacion clara durante todo el proceso."],
-  ["Trabajas en Rosario y alrededores?", "Si. El servicio esta orientado a Rosario, Santa Fe y zona cercana."],
+  ["Conviene llevarlo aunque falle solo a veces?", "Si. Cuando una falla aparece de manera intermitente, el contexto ayuda mucho: cuando pasa, si calienta, si se descarga rapido o si aparece despues de un golpe, humedad o actualizacion."],
+  ["Hace falta llevar cargador, funda o accesorios?", "Solo si el problema tiene relacion con carga, bateria, audio, perifericos o compatibilidad. Si no, normalmente alcanza con el equipo y una descripcion clara."],
+  ["Tengo informacion importante adentro. Lo aviso antes?", "Si, siempre conviene avisar si hay datos sensibles, cuentas activas o contenido que no queres perder de vista. Eso ordena mejor la revision desde el principio."],
+  ["Si ya lo vio otro tecnico, igual sirve consultarlo?", "Si. Lo que te hayan dicho antes puede aportar pistas, pero igual conviene revisar el equipo con criterio propio y no trabajar solo sobre una conclusion ajena."],
+] as const;
+
+const processFaq = [
+  ["Sirve mandar fotos o videos antes de acercarlo?", "Si. Una foto de una rotura, un video de la falla o un mensaje bien detallado puede ordenar mucho mejor el caso antes de revisar el equipo en persona."],
+  ["Que pasa si la falla aparece y desaparece?", "Tambien se toma en serio. Cuando el problema es intermitente, lo mas util es registrar en que momento aparece y bajo que condiciones para no revisar a ciegas."],
+  ["Se aprueba algo antes de avanzar con gastos?", "Si. La idea es ordenar primero el diagnostico y despues decidir con informacion clara si tiene sentido seguir, frenar o buscar otra salida."],
+  ["Y si el equipo necesita algo que ya no conviene ponerle?", "Tambien forma parte del proceso decirlo a tiempo. A veces la mejor decision no es avanzar, sino evitar un gasto desproporcionado para el equipo que tenes."],
+] as const;
+
+const aboutFaq = [
+  ["Por que rosfix no toma cualquier caso?", "Porque trabajar con criterio tambien implica marcar limites. Tomar algo que no se puede resolver bien solo agrega ruido, falsas expectativas y malas decisiones."],
+  ["Decir que no a tiempo tambien es parte del servicio?", "Si. En muchos casos, una respuesta honesta antes de intervenir vale mas que forzar una reparacion que no cierra tecnica ni economicamente."],
+  ["Que mira primero un tecnico serio antes de tocar un equipo?", "Sintomas reales, contexto de uso, antecedentes del problema y si alguien ya intervino antes. Sin esa base, cualquier decision tecnica arranca torcida."],
+  ["Si mi caso no encaja con lo que haces, igual me lo van a decir claro?", "Si. La idea no es retener cualquier consulta, sino orientar bien cada caso aunque la mejor salida sea no seguir con rosfix."],
 ] as const;
 
 const experience = [
   ["Rosario Tecno", "Experiencia en diagnostico y reparacion de celulares, especialmente en dispositivos Apple e iOS, con trabajo tecnico orientado a calidad, tiempos y buena comunicacion."],
   ["Trabajo independiente", "Actividad como tecnico informatico independiente desde 2023, brindando soporte integral, diagnostico de hardware y gestion autonoma de clientes, repuestos y control de calidad."],
   ["Soporte e infraestructura educativa", "Participacion en despliegue tecnico, mantenimiento y resolucion de incidencias de hardware y conectividad en entornos educativos junto al equipo docente del Colegio San Jose / Casa Salesiana."],
+];
+
+const servicesEditorialBlocks: EditorialItem[] = [
+  {
+    eyebrow: "android e iphone",
+    title: "Celulares con fallas comunes, traspasos y orden tecnico.",
+    text: "Hay equipos que necesitan limpieza, bateria, modulo, pin o una buena revision antes de decidir si conviene reparar. Tambien hay valor en configurar, ordenar y dejar claro que datos y cuentas estan en juego.",
+  },
+  {
+    eyebrow: "pc y notebook",
+    title: "Equipos lentos o inestables que todavia pueden rendir mejor.",
+    text: "Formateo, diagnostico, mejora funcional, armado y revision de piezas basicas para equipos de uso real. La idea no es prometer potencia infinita: es dejar claro hasta donde conviene llegar.",
+  },
+  {
+    eyebrow: "uso cotidiano",
+    title: "Problemas chicos que igual traban tu dia entero.",
+    text: "WhatsApp, cuentas, traspasos, configuraciones especificas, lentitud y desorden digital tambien forman parte del servicio. Son cosas que muchos minimizan, pero son exactamente las que hacen perder tiempo todos los dias.",
+  },
+];
+
+const servicesEditorialTruths: EditorialItem[] = [
+  {
+    title: "No todo necesita un cambio completo.",
+    text: "Muchas veces alcanza con revisar, limpiar, reordenar o descartar una sospecha equivocada antes de gastar en piezas nuevas.",
+  },
+  {
+    title: "A veces hace falta diagnostico, no gasto.",
+    text: "La utilidad no siempre esta en reparar de inmediato. A veces esta en entender bien que falla y que salida tiene sentido para vos.",
+  },
+  {
+    title: "Tambien resolvemos lo que otros patean.",
+    text: "Configurar, destrabar, explicar y dejar un equipo usable tambien es servicio tecnico cuando el problema es real.",
+  },
+];
+
+const processEditorialSteps: EditorialItem[] = [
+  {
+    eyebrow: "01",
+    title: "Recepcion y estado inicial.",
+    text: "Se ordena que equipo es, que sintomas tiene y en que estado entra. El problema se toma desde informacion concreta, no desde supuestos.",
+  },
+  {
+    eyebrow: "02",
+    title: "Diagnostico con plazo claro.",
+    text: "En hasta 2 dias ya deberias saber que pasa, que se descarto y si conviene avanzar o frenar.",
+  },
+  {
+    eyebrow: "03",
+    title: "Presupuesto despues de revisar.",
+    text: "La cifra sale una vez que el diagnostico ordena el caso. Primero verdad tecnica, despues decision.",
+  },
+  {
+    eyebrow: "04",
+    title: "Reparacion o derivacion con contexto.",
+    text: "Si se sigue con rosfix, hay pasos claros. Si no, igual te llevas una base util para continuar con otro tecnico.",
+  },
+];
+
+const processEditorialTruths: EditorialItem[] = [
+  {
+    title: "No desaparece tu equipo.",
+    text: "Hay estado inicial, avance identificable y cierre claro. No quedas esperando sin saber nada.",
+  },
+  {
+    title: "No desaparece la informacion.",
+    text: "Aunque el trabajo no siga aca, el diagnostico deja contexto, descarte y una salida mas clara.",
+  },
+  {
+    title: "Siempre vas a saber la verdad.",
+    text: "Si el arreglo no conviene, si falta una pieza o si el caso pide derivacion, se dice sin vueltas.",
+  },
+];
+
+const aboutEditorialPrinciples: EditorialItem[] = [
+  {
+    eyebrow: "criterio",
+    title: "No tomo todo.",
+    text: "Se toman equipos y problemas de complejidad media que se puedan resolver bien, con tiempos razonables y comunicacion clara.",
+  },
+  {
+    eyebrow: "limite",
+    title: "Si no conviene, se dice.",
+    text: "Decir que no a una reparacion que no cierra tambien protege al cliente. El valor no esta en intervenir por orgullo.",
+  },
+  {
+    eyebrow: "utilidad",
+    title: "Aunque no lo haga yo, igual te tiene que servir.",
+    text: "Un diagnostico util, una derivacion ordenada o una recomendacion honesta tambien forman parte del trabajo.",
+  },
+];
+
+const aboutEditorialTruths: EditorialItem[] = [
+  {
+    title: "Limites claros como forma de cuidado.",
+    text: "No prometer cualquier cosa evita hacer perder tiempo, plata y contexto.",
+  },
+  {
+    title: "Equipos viejos o rescatables con vida util.",
+    text: "Cuando todavia hay margen real, se evalua con criterio. Cuando ya no lo hay, se explica.",
+  },
+  {
+    title: "Primero criterio, despues intervencion.",
+    text: "La honestidad tecnica no se agrega al final: ordena la decision desde el principio.",
+  },
 ];
 
 function WhatsAppLink({
@@ -144,10 +269,10 @@ function Nav({ currentPage }: { currentPage: PageKey }) {
   return (
     <header className="site-header">
       <div className="shell flex items-center justify-between gap-6">
-        <a href="./" className="brand-mark" aria-label="rosFIX inicio">
-          <img src="assets/brand-mark.svg" alt="" width="34" height="34" />
+        <a href="./" className="brand-mark" aria-label="rosfix inicio">
+          <img src="assets/rosfix-mark.svg" alt="" className="brand-mark__logo" />
           <span>
-            <strong>rosFIX</strong>
+            <strong>rosfix</strong>
             <small>servicio tecnico en Rosario</small>
           </span>
         </a>
@@ -246,20 +371,26 @@ function ServicesSection() {
       <div className="service-grid service-grid-wide">
         {services.map(({ title, text, points, icon: Icon, image }) => (
           <article key={title} className="service-panel">
-            <div className="service-panel__head">
-              <Icon size={18} />
-              <strong>{title}</strong>
+            <div className="service-panel__content">
+              <div className="service-panel__head">
+                <Icon size={18} />
+                <strong>{title}</strong>
+              </div>
+              <div className="service-panel__body">
+                <p>{text}</p>
+                <ul>
+                  {points.map((item) => (
+                    <li key={item}>
+                      <ChevronRight size={14} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <p>{text}</p>
-            <img src={image} alt="" className="service-panel__image" />
-            <ul>
-              {points.map((item) => (
-                <li key={item}>
-                  <ChevronRight size={14} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="service-panel__media">
+              <img src={image} alt="" className="service-panel__image" />
+            </div>
           </article>
         ))}
       </div>
@@ -306,15 +437,23 @@ function TrustSection() {
   );
 }
 
-function FaqSection() {
+function FaqSection({
+  eyebrow = "FAQ",
+  title = "Preguntas que suelen aparecer antes de traer un equipo",
+  items = faq,
+}: {
+  eyebrow?: string;
+  title?: string;
+  items?: readonly (readonly [string, string])[];
+}) {
   return (
     <section className="section shell">
       <div className="section-heading">
-        <span>FAQ</span>
-        <h2>Preguntas que suelen aparecer antes de traer un equipo</h2>
+        <span>{eyebrow}</span>
+        <h2>{title}</h2>
       </div>
       <div className="faq-grid">
-        {faq.map(([question, answer]) => (
+        {items.map(([question, answer]) => (
           <article key={question}>
             <h3>{question}</h3>
             <p>{answer}</p>
@@ -337,6 +476,106 @@ function ExperienceSection() {
           <article key={title}>
             <h2>{title}</h2>
             <p>{text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ContentArchive({
+  eyebrow,
+  title,
+  summary,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  children: ReactNode;
+}) {
+  return (
+    <details className="content-archive">
+      <summary>
+        <div className="shell content-archive__summary-inner">
+          <div className="content-archive__lead">
+            <span>{eyebrow}</span>
+            <strong>{title}</strong>
+          </div>
+          <div className="content-archive__meta">
+            <p>{summary}</p>
+            <span className="content-archive__action">
+              <span>Abrir respuestas</span>
+              <ChevronRight size={16} />
+            </span>
+          </div>
+        </div>
+      </summary>
+      <div className="content-archive__body">{children}</div>
+    </details>
+  );
+}
+
+function ImageStatementSection({
+  ariaLabel,
+  eyebrow,
+  title,
+  image,
+  align = "right",
+}: {
+  ariaLabel: string;
+  eyebrow: string;
+  title: string;
+  image: string;
+  align?: "left" | "right";
+}) {
+  return (
+    <section className={`breathing-section breathing-section--${align}`} aria-label={ariaLabel}>
+      <div className="breathing-section__media" aria-hidden="true">
+        <img src={image} alt="" />
+      </div>
+      <div className="breathing-section__copy shell">
+        <span>{eyebrow}</span>
+        <strong>{title}</strong>
+      </div>
+    </section>
+  );
+}
+
+function EditorialNarrativeSection({
+  eyebrow,
+  title,
+  intro,
+  items,
+}: {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  items: EditorialItem[];
+}) {
+  return (
+    <section className="section shell editorial-narrative">
+      <div className="section-heading editorial-narrative__heading">
+        <span>{eyebrow}</span>
+        <h2>{title}</h2>
+        {intro ? <p>{intro}</p> : null}
+      </div>
+      <div className="editorial-narrative__grid">
+        {items.map(({ eyebrow: itemEyebrow, title: itemTitle, text, points }) => (
+          <article key={itemTitle}>
+            {itemEyebrow ? <span>{itemEyebrow}</span> : null}
+            <h3>{itemTitle}</h3>
+            <p>{text}</p>
+            {points?.length ? (
+              <ul>
+                {points.map((point) => (
+                  <li key={point}>
+                    <ChevronRight size={14} />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </article>
         ))}
       </div>
@@ -403,7 +642,7 @@ function ContactForm() {
 
       <button type="submit" className="primary-action">
         <MessageCircle size={17} />
-        Contactar rosFIX
+        Contactar rosfix
       </button>
     </form>
   );
@@ -414,7 +653,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="shell footer-grid">
         <div>
-          <strong>rosFIX</strong>
+          <strong>rosfix</strong>
           <p>Diagnostico tecnico especializado.</p>
           <p>Servicio tecnico local en Rosario con criterio, seguimiento directo y explicacion clara.</p>
         </div>
@@ -442,9 +681,9 @@ function HomePage() {
   return (
     <>
       <PageHero
-        eyebrow="rosFIX"
+        eyebrow="rosfix"
         title="Diagnostico real, atencion directa y trabajo tecnico con criterio."
-        body="rosFIX es un servicio tecnico independiente para celulares, notebooks y PC en Rosario, pensado para quienes prefieren entender bien que pasa antes de gastar."
+        body="rosfix es un servicio tecnico independiente para celulares, notebooks y PC en Rosario, pensado para quienes prefieren entender bien que pasa antes de gastar."
         note="No se vende humo con presupuestos instantaneos. Primero se revisa, se explica y despues se decide."
         actions={
           <>
@@ -460,7 +699,7 @@ function HomePage() {
         }
         aside={
           <div className="display-panel">
-            <img src="assets/hero-workbench.svg" alt="Banco de trabajo tecnico de rosFIX" />
+            <img src="assets/hero-workbench.png" alt="Banco de trabajo tecnico de rosfix" />
             <div className="display-note">
               <span>Enfoque</span>
               <strong>Revision, descarte y criterio antes de tocar piezas</strong>
@@ -471,12 +710,18 @@ function HomePage() {
 
       <FeatureRibbon />
       <ServicesSection />
+      <ImageStatementSection
+        ariaLabel="Diagnostico cercano y atencion directa en rosfix"
+        eyebrow="Diagnostico cercano"
+        title="Un mejor diagnostico empieza hablando directo con quien revisa tu equipo."
+        image="assets/editorial-breath.png"
+      />
       <TrustSection />
 
       <section className="section section-contrast shell split-callout">
         <div>
           <span>Manifiesto</span>
-          <h2>Hay servicios que trabajan por volumen. rosFIX prefiere trabajar con criterio.</h2>
+          <h2>Hay servicios que trabajan por volumen. rosfix prefiere trabajar con criterio.</h2>
         </div>
         <div>
           <p>
@@ -514,7 +759,7 @@ function ServicesPage() {
         }
         aside={
           <div className="display-panel">
-            <img src="assets/hero-devices.svg" alt="Visual tecnico de dispositivos y herramientas" />
+            <img src="assets/hero-devices.png" alt="Visual tecnico de dispositivos y herramientas" />
             <div className="display-note">
               <span>Foco</span>
               <strong>Hardware, celulares y diagnostico responsable</strong>
@@ -523,8 +768,31 @@ function ServicesPage() {
         }
       />
 
-      <ServicesSection />
-      <FaqSection />
+      <EditorialNarrativeSection
+        eyebrow="Servicios"
+        title="Problemas cotidianos, explicados y resueltos."
+        intro="rosfix no entra solo cuando hay una reparacion grande. Tambien entra cuando hace falta ordenar, configurar, recuperar contexto y destrabar equipos que siguen teniendo solucion."
+        items={servicesEditorialBlocks}
+      />
+
+      <EditorialNarrativeSection
+        eyebrow="Criterio"
+        title="La idea no es sumar trabajo: es bajar ruido."
+        intro="El valor no siempre esta en cambiar piezas. Muchas veces esta en revisar bien, descartar una sospecha equivocada y dejarte una salida clara."
+        items={servicesEditorialTruths}
+      />
+
+      <ContentArchive
+        eyebrow="Consultas"
+        title="Dudas frecuentes antes de traer tu equipo"
+        summary="Presupuesto, accesorios, datos sensibles y otras consultas practicas para llegar con mejor contexto."
+      >
+        <FaqSection
+          eyebrow="Consultas"
+          title="Respuestas utiles antes de acercar un equipo"
+          items={faq}
+        />
+      </ContentArchive>
     </>
   );
 }
@@ -544,14 +812,14 @@ function ProcessPage() {
               Pedir revision
             </WhatsAppLink>
             <a href="sobre-rosfix.html" className="secondary-action">
-              Conocer rosFIX
+              Conocer rosfix
               <ArrowRight size={16} />
             </a>
           </>
         }
         aside={
           <div className="display-panel">
-            <img src="assets/workbench-grid.svg" alt="Panel de metodo y diagnostico de rosFIX" />
+            <img src="assets/workbench-grid.png" alt="Panel de metodo y diagnostico de rosfix" />
             <div className="display-note">
               <span>Metodo</span>
               <strong>Se evalua, se explica y recien despues se decide</strong>
@@ -560,9 +828,39 @@ function ProcessPage() {
         }
       />
 
-      <ProcessRail />
-      <TrustSection />
-      <FaqSection />
+      <ImageStatementSection
+        ariaLabel="Criterio tecnico en cada decision de rosfix"
+        eyebrow="Criterio"
+        title="El criterio ordena el diagnostico desde el primer mensaje, no al final del arreglo."
+        image="assets/editorial-criterio.png"
+        align="left"
+      />
+
+      <EditorialNarrativeSection
+        eyebrow="Proceso"
+        title="Tu equipo no entra en un limbo tecnico."
+        intro="Hay recepcion, diagnostico con plazo, presupuesto despues de revisar y una salida clara aunque el trabajo no siga con rosfix."
+        items={processEditorialSteps}
+      />
+
+      <EditorialNarrativeSection
+        eyebrow="Verdades"
+        title="Siempre deberias saber donde estas parado."
+        intro="El proceso esta pensado para bajar ansiedad, no para fabricar misterio. La informacion tambien forma parte del servicio."
+        items={processEditorialTruths}
+      />
+
+      <ContentArchive
+        eyebrow="Consultas"
+        title="Dudas frecuentes sobre revision y tiempos"
+        summary="Seguimiento, aprobaciones y decisiones practicas para saber que esperar durante cada etapa."
+      >
+        <FaqSection
+          eyebrow="Consultas"
+          title="Respuestas utiles sobre diagnostico, seguimiento y aprobacion"
+          items={processFaq}
+        />
+      </ContentArchive>
     </>
   );
 }
@@ -571,15 +869,15 @@ function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="Sobre rosFIX"
+        eyebrow="Sobre rosfix"
         title="Resolver con criterio y comunicar con claridad."
         body="Leandro Palombo combina experiencia en reparacion de celulares, soporte tecnico, hardware y sistemas, con una forma de trabajo orientada a explicar bien lo que hace."
-        note="rosFIX toma esa base y la convierte en una manera de trabajar: diagnostico honesto, soporte real y decisiones tecnicas claras."
+        note="rosfix toma esa base y la convierte en una manera de trabajar: diagnostico honesto, soporte real y decisiones tecnicas claras."
         actions={
           <>
             <a href="contacto.html" className="primary-action">
               <MessageCircle size={17} />
-              Contactar rosFIX
+              Contactar rosfix
             </a>
             <a href="servicios.html" className="secondary-action">
               Explorar servicios
@@ -589,7 +887,7 @@ function AboutPage() {
         }
         aside={
           <div className="display-panel">
-            <img src="assets/bench-signal.svg" alt="Visual tecnico y humano de rosFIX" />
+            <img src="assets/tecnico-leandro.png" alt="Visual tecnico y humano de rosfix" />
             <div className="display-note">
               <span>Perfil</span>
               <strong>Reparacion, soporte y criterio tecnico real</strong>
@@ -598,7 +896,31 @@ function AboutPage() {
         }
       />
 
-      <ExperienceSection />
+      <EditorialNarrativeSection
+        eyebrow="Tecnico"
+        title="Criterio tecnico, honestidad y limites claros."
+        intro="rosfix no intenta tomar cualquier cosa. Toma lo que se puede resolver bien y dice con claridad cuando una intervencion no tiene sentido."
+        items={aboutEditorialPrinciples}
+      />
+
+      <EditorialNarrativeSection
+        eyebrow="Honestidad"
+        title="La utilidad tambien esta en saber hasta donde conviene llegar."
+        intro="Un buen diagnostico no se mide solo por lo que repara. Tambien se mide por lo que evita hacerte perder."
+        items={aboutEditorialTruths}
+      />
+
+      <ContentArchive
+        eyebrow="Consultas"
+        title="Dudas frecuentes sobre criterio y forma de trabajo"
+        summary="Alcance real, limites tecnicos y la manera en que se comunica cada caso desde el inicio."
+      >
+        <FaqSection
+          eyebrow="Consultas"
+          title="Respuestas utiles sobre criterio, alcance y decisiones tecnicas"
+          items={aboutFaq}
+        />
+      </ContentArchive>
     </>
   );
 }

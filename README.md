@@ -1,6 +1,6 @@
-# rosFIX
+# rosfix
 
-Sitio multipagina para `rosFIX`, un servicio tecnico independiente de Rosario orientado a celulares, notebooks y PC.
+Sitio multipagina para `rosfix`, un servicio tecnico independiente de Rosario orientado a celulares, notebooks y PC.
 
 ## Stack
 
