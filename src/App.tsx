@@ -46,6 +46,7 @@ type CourseOffer = {
 };
 
 type HeroFact = readonly [string, string];
+type HeroVisualLine = readonly [string, string];
 
 type EditorialItem = {
   eyebrow?: string;
@@ -434,6 +435,8 @@ function PageHero({
   aside,
   facts,
   variant = "home",
+  tone = "home",
+  reverse = false,
 }: {
   eyebrow: string;
   title: string;
@@ -443,9 +446,11 @@ function PageHero({
   aside: ReactNode;
   facts?: HeroFact[];
   variant?: "home" | "inner";
+  tone?: "home" | "services" | "process" | "about" | "contact";
+  reverse?: boolean;
 }) {
   return (
-    <section className={`hero-block shell hero-block--${variant}`}>
+    <section className={`hero-block shell hero-block--${variant} hero-block--${tone}${reverse ? " hero-block--reverse" : ""}`}>
       <div className="hero-copy">
         <div className="eyebrow-line">
           <span>{eyebrow}</span>
@@ -469,6 +474,67 @@ function PageHero({
       </div>
       <div className="hero-aside">{aside}</div>
     </section>
+  );
+}
+
+function HeroVisual({
+  image,
+  alt,
+  eyebrow,
+  title,
+  lines,
+  className,
+}: {
+  image: string;
+  alt: string;
+  eyebrow: string;
+  title: string;
+  lines: HeroVisualLine[];
+  className?: string;
+}) {
+  return (
+    <figure className={`hero-visual${className ? ` ${className}` : ""}`}>
+      <img src={image} alt={alt} className="hero-visual__image" />
+      <figcaption className="hero-visual__caption">
+        <div className="hero-visual__heading">
+          <span>{eyebrow}</span>
+          <strong>{title}</strong>
+        </div>
+        <dl className="hero-visual__lines" aria-label={title}>
+          {lines.map(([label, value]) => (
+            <div key={label}>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </figcaption>
+    </figure>
+  );
+}
+
+function ContactHeroCard() {
+  return (
+    <div className="contact-hero-card">
+      <div className="contact-hero-card__lead">
+        <span>Canal principal</span>
+        <strong>WhatsApp directo para leer bien el caso.</strong>
+      </div>
+      <dl className="contact-hero-card__lines" aria-label="Datos de contacto de rosfix">
+        <div>
+          <dt>WhatsApp</dt>
+          <dd>+54 9 341 2008643</dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd>{MAIL}</dd>
+        </div>
+        <div>
+          <dt>Base</dt>
+          <dd>Rosario, Santa Fe</dd>
+        </div>
+      </dl>
+    </div>
   );
 }
 
@@ -953,9 +1019,9 @@ function HomePage() {
     <>
       <PageHero
         eyebrow="rosfix"
-        title="Diagnostico real para celulares, notebooks y PC."
-        body="Servicio tecnico independiente en Rosario."
-        note="Atencion directa y criterio real."
+        title="Diagnostico real para equipos de uso diario."
+        body="Celulares, notebooks y PC con trato directo en Rosario."
+        note="Primero se entiende el caso. Despues se decide que conviene hacer."
         actions={
           <>
             <WhatsAppLink className="primary-action">
@@ -969,14 +1035,20 @@ function HomePage() {
           </>
         }
         aside={
-          <div className="display-panel">
-            <img src="assets/hero-workbench.png" alt="Banco de trabajo tecnico de rosfix" />
-            <div className="display-note">
-              <span>Enfoque</span>
-              <strong>Revision, descarte y criterio antes de tocar piezas</strong>
-            </div>
-          </div>
+          <HeroVisual
+            image="assets/hero-workbench.png"
+            alt="Mesa de trabajo tecnica de rosfix con herramientas y equipos en revision"
+            eyebrow="Mesa de trabajo"
+            title="Revision, descarte y criterio antes de tocar piezas."
+            lines={[
+              ["Lugar", "Banco real de trabajo"],
+              ["Lectura", "Sintoma antes que suposicion"],
+              ["Salida", "Decision util para el cliente"],
+            ]}
+            className="hero-visual--home"
+          />
         }
+        tone="home"
       />
 
       <FeatureRibbon />
@@ -993,13 +1065,14 @@ function ServicesPage() {
     <>
       <PageHero
         eyebrow="Servicios"
-        title="Celulares, notebooks y PC con criterio."
-        body="Fallas comunes y decisiones utiles sobre equipos de uso real."
+        title="Que entra, que no, y como se trabaja."
+        body="Celulares, notebooks y PC de uso cotidiano. Fallas comunes, mejoras puntuales y diagnostico antes de gastar."
         facts={[
-          ["Equipos", "Celulares, notebooks y PC"],
-          ["Enfoque", "Fallas comunes y decisiones utiles"],
-          ["Trato", "Directo por WhatsApp"],
+          ["Toma hoy", "Celulares, notebooks y PC"],
+          ["No promete", "Microsoldadura ni board-level"],
+          ["Canal", "WhatsApp directo"],
         ]}
+        note="Se trabaja con alcance claro, sin prometer cosas que no corresponden."
         actions={
           <>
             <WhatsAppLink className="primary-action">
@@ -1013,15 +1086,21 @@ function ServicesPage() {
           </>
         }
         aside={
-          <div className="display-panel">
-            <img src="assets/hero-devices.png" alt="Visual tecnico de dispositivos y herramientas" />
-            <div className="display-note">
-              <span>Foco</span>
-              <strong>Hardware comun, celulares y diagnostico responsable</strong>
-            </div>
-          </div>
+          <HeroVisual
+            image="assets/hero-services-placeholder.png"
+            alt="Recepcion de equipos y herramientas de diagnostico en un entorno tecnico sobrio"
+            eyebrow="Admisión"
+            title="Recepción clara de celulares, notebooks y PC sobre banco editorial."
+            lines={[
+              ["Escena", "Equipos reales listos para revisar"],
+              ["Paleta", "Negro, gris, terracota"],
+              ["Foco", "Alcance real de rosfix"],
+            ]}
+            className="hero-visual--services"
+          />
         }
         variant="inner"
+        tone="services"
       />
 
       <EditorialNarrativeSection
@@ -1051,13 +1130,14 @@ function ProcessPage() {
     <>
       <PageHero
         eyebrow="Proceso"
-        title="Diagnostico claro desde el primer mensaje."
-        body="Cada caso entra con contexto y sale con una decision clara."
+        title="Asi se ordena un caso en rosfix."
+        body="Mensaje, revision, diagnostico y decision. Sin limbo tecnico ni presupuesto lanzado al aire."
         facts={[
+          ["Primer paso", "Equipo, modelo y sintoma"],
           ["Diagnostico", "Hasta 48 hs"],
-          ["Presupuesto", "Despues de revisar"],
-          ["Seguimiento", "Directo y claro"],
+          ["Decision", "Se explica antes de avanzar"],
         ]}
+        note="Placeholder actual: reemplazar por una escena de proceso con equipo abierto, anotaciones y lectura tecnica en curso."
         actions={
           <>
             <WhatsAppLink className="primary-action">
@@ -1071,23 +1151,22 @@ function ProcessPage() {
           </>
         }
         aside={
-          <div className="display-panel">
-            <img src="assets/workbench-grid.png" alt="Panel de metodo y diagnostico de rosfix" />
-            <div className="display-note">
-              <span>Metodo</span>
-              <strong>Se evalua, se explica y despues se decide</strong>
-            </div>
-          </div>
+          <HeroVisual
+            image="assets/hero-process-placeholder.png"
+            alt="Placeholder actual para la futura hero de proceso de rosfix"
+            eyebrow="Placeholder proceso"
+            title="Secuencia real de diagnostico, chequeo y decision sobre banco tecnico."
+            lines={[
+              ["01", "Ingreso con contexto"],
+              ["02", "Revision antes de presupuestar"],
+              ["03", "Salida clara para el cliente"],
+            ]}
+            className="hero-visual--process"
+          />
         }
         variant="inner"
-      />
-
-      <ImageStatementSection
-        ariaLabel="Criterio tecnico en cada decision de rosfix"
-        eyebrow="Criterio"
-        title="El criterio ordena el diagnostico desde el primer mensaje, no al final del arreglo."
-        image="assets/editorial-criterio.png"
-        align="left"
+        tone="process"
+        reverse
       />
 
       <EditorialNarrativeSection
@@ -1117,13 +1196,14 @@ function AboutPage() {
     <>
       <PageHero
         eyebrow="Tecnico"
-        title="Tecnico independiente, criterio claro."
-        body="Trabajo con fallas comunes y una regla simple: no prometer de mas."
+        title="Quien revisa tu equipo tambien te responde."
+        body="Tecnico independiente en Rosario. Menos burocracia, mas contexto para leer bien cada caso."
         facts={[
           ["Base", "Rosario, Santa Fe"],
           ["Alcance", "Celulares, notebooks y PC"],
-          ["Limite", "Sin prometer de mas"],
+          ["Criterio", "No prometer de mas"],
         ]}
+        note="Placeholder actual: reemplazar por un retrato tecnico mas crudo, cercano y editorial, sin pose corporativa."
         actions={
           <>
             <a href="contacto.html" className="primary-action">
@@ -1137,15 +1217,21 @@ function AboutPage() {
           </>
         }
         aside={
-          <div className="display-panel">
-            <img src="assets/tecnico-leandro.png" alt="Visual tecnico y humano de rosfix" />
-            <div className="display-note">
-              <span>Perfil</span>
-              <strong>Reparacion, soporte y criterio tecnico real</strong>
-            </div>
-          </div>
+          <HeroVisual
+            image="assets/hero-about-placeholder.png"
+            alt="Placeholder actual para la futura hero del tecnico de rosfix"
+            eyebrow="Placeholder tecnico"
+            title="Retrato editorial del tecnico en su propio espacio de trabajo."
+            lines={[
+              ["Perfil", "Tecnico independiente"],
+              ["Modo", "Trato directo y criterio"],
+              ["Limite", "Sin humo ni promesas extras"],
+            ]}
+            className="hero-visual--about"
+          />
         }
         variant="inner"
+        tone="about"
       />
 
       <EditorialNarrativeSection
@@ -1175,36 +1261,23 @@ function ContactPage() {
     <>
       <PageHero
         eyebrow="Contacto"
-        title="Contame el equipo y el sintoma."
-        body="Con eso ya se puede ordenar el caso."
+        title="Escribi con lo justo y arranca bien."
+        body="Equipo, modelo y sintoma. Con eso ya se puede leer mejor el caso."
         facts={[
           ["Canal", "WhatsApp directo"],
-          ["Ciudad", "Rosario, Santa Fe"],
+          ["Base", "Rosario, Santa Fe"],
           ["Trato", "Sin intermediarios"],
         ]}
+        note="Si ya lo revisaron, si se golpeo o si se mojo, suma decirlo desde el primer mensaje."
         actions={
           <WhatsAppLink className="primary-action">
             <MessageCircle size={17} />
             Hablar por WhatsApp
           </WhatsAppLink>
         }
-        aside={
-          <div className="contact-side">
-            <div>
-              <span>Ciudad</span>
-              <strong>Rosario, Santa Fe</strong>
-            </div>
-            <div>
-              <span>Telefono</span>
-              <strong>+54 9 341 2008643</strong>
-            </div>
-            <div>
-              <span>Email</span>
-              <strong>{MAIL}</strong>
-            </div>
-          </div>
-        }
+        aside={<ContactHeroCard />}
         variant="inner"
+        tone="contact"
       />
 
       <section className="section section-editorial shell contact-layout">
