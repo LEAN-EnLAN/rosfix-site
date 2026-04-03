@@ -55,11 +55,8 @@ type EditorialItem = {
 
 type CarouselSlide = {
   eyebrow: string;
-  kicker: string;
-  title: string;
-  accent: string;
+  label: string;
   statement: string;
-  supporting: string;
   image: string;
 };
 
@@ -107,30 +104,21 @@ const featuredLines = [
 
 const editorialCarouselSlides: CarouselSlide[] = [
   {
-    eyebrow: "Rosfix",
-    kicker: "¿SUENA BAJO?",
-    title: "No esta roto.",
-    accent: "Es suciedad.",
-    statement: "Un mejor diagnostico empieza hablando directo con quien revisa tu equipo.",
-    supporting: "Diagnostico cercano",
+    eyebrow: "Diagnostico cercano",
+    label: "Celulares",
+    statement: "Hablar directo con quien revisa tu equipo mejora el diagnostico desde el primer mensaje.",
     image: "assets/hero-devices.png",
   },
   {
-    eyebrow: "PC y notebooks",
-    kicker: "¿SE ARRASTRA?",
-    title: "No siempre es vieja.",
-    accent: "A veces pide mantenimiento.",
-    statement: "Temperatura, disco y memoria se leen antes de gastar en hardware porque no todo equipo lento necesita reemplazo.",
-    supporting: "Rendimiento con criterio",
+    eyebrow: "Rendimiento real",
+    label: "PC y notebooks",
+    statement: "Temperatura, disco y memoria se leen antes de gastar en hardware que tal vez no hace falta cambiar.",
     image: "assets/workbench-grid.png",
   },
   {
-    eyebrow: "Diagnostico tecnico",
-    kicker: "¿FALLA POR MOMENTOS?",
-    title: "No se adivina.",
-    accent: "Se ordena.",
-    statement: "El criterio ordena el caso desde el primer mensaje para decir si conviene seguir, frenar o derivar sin inventar drama.",
-    supporting: "Decision clara",
+    eyebrow: "Decision clara",
+    label: "Diagnostico tecnico",
+    statement: "No todo caso necesita arreglo: a veces conviene frenar, explicar bien o derivar a tiempo.",
     image: "assets/bench-signal.png",
   },
 ];
@@ -197,28 +185,28 @@ const courses: CourseOffer[] = [
   {
     eyebrow: "curso 01",
     title: "Diagnostico con criterio para fallas reales.",
-    description: "Para aprender a leer sintomas y revisar con mas orden.",
-    audience: "Quienes arrancan o revisan por cuenta propia.",
-    format: "Clases cortas y casos concretos.",
-    status: "Primera edicion en preparacion.",
+    description: "Leer sintomas y revisar con mas orden.",
+    audience: "Inicio tecnico / autodidacta.",
+    format: "Casos reales / clases cortas.",
+    status: "Proxima apertura.",
     points: [
-      "Como preguntar mejor y reunir contexto util",
-      "Que revisar primero en equipos comunes",
-      "Cuando seguir, frenar o derivar",
+      "Preguntas que ordenan el caso",
+      "Primer chequeo util",
+      "Cuando frenar o derivar",
     ],
     message: "Hola Leandro, quiero enterarme primero del curso de diagnostico con criterio.",
   },
   {
     eyebrow: "curso 02",
     title: "Mantenimiento y criterio para PC y notebooks.",
-    description: "Mejoras reales, mantenimiento responsable y hardware basico sin humo.",
-    audience: "Usuarios curiosos y tecnicos en etapa inicial.",
-    format: "Recorridos guiados y chequeos utiles.",
-    status: "Contenido en desarrollo.",
+    description: "Mejoras reales y mantenimiento util.",
+    audience: "Usuarios curiosos / etapa inicial.",
+    format: "Chequeos guiados / equipos comunes.",
+    status: "En desarrollo.",
     points: [
-      "Temperatura, limpieza y rendimiento",
-      "Memoria, disco y sistema: que cambia",
-      "Hasta donde conviene invertir",
+      "Limpieza y temperatura",
+      "Memoria, disco y sistema",
+      "Cuando no conviene invertir",
     ],
     message: "Hola Leandro, me interesa el curso de mantenimiento y criterio para PC y notebooks.",
   },
@@ -347,8 +335,8 @@ function Nav({ currentPage }: { currentPage: PageKey }) {
 
   return (
     <header className={`site-header${isScrolled ? " is-scrolled" : ""}${open ? " is-open" : ""}`}>
-      <div className="shell site-header__inner">
-        <div className="site-header__row">
+      <div className="site-header__inner">
+        <div className="shell site-header__row">
           <a href="./" className="brand-mark" aria-label="rosfix inicio" onClick={closeMenu}>
             <img src="assets/rosfix-mark.svg" alt="" className="brand-mark__logo" />
             <span>
@@ -560,22 +548,15 @@ function EditorialCarouselSection() {
           style={{ transform: `translate3d(-${currentIndex * 100}%, 0, 0)` }}
         >
           {editorialCarouselSlides.map((slide) => (
-            <article key={slide.kicker} className="editorial-carousel__slide">
+            <article key={slide.eyebrow} className="editorial-carousel__slide">
               <div className="editorial-carousel__frame">
                 <div className="editorial-carousel__grid" aria-hidden="true" />
-                <div className="editorial-carousel__copy">
-                  <span>{slide.eyebrow}</span>
-                  <div className="editorial-carousel__headline">
-                    <strong>{slide.kicker}</strong>
-                    <em>{slide.title}</em>
-                    <b>{slide.accent}</b>
-                  </div>
-                </div>
-                <div className="editorial-carousel__media">
+                <div className="editorial-carousel__media" aria-hidden="true">
                   <img src={slide.image} alt="" />
                 </div>
-                <div className="editorial-carousel__note">
-                  <span>{slide.supporting}</span>
+                <div className="editorial-carousel__copy">
+                  <span>{slide.label}</span>
+                  <strong>{slide.eyebrow}</strong>
                   <p>{slide.statement}</p>
                 </div>
               </div>
@@ -588,14 +569,14 @@ function EditorialCarouselSection() {
         <div className="editorial-carousel__rail">
           {editorialCarouselSlides.map((slide, index) => (
             <button
-              key={slide.kicker}
+              key={slide.eyebrow}
               type="button"
               className={`editorial-carousel__index${index === currentIndex ? " is-active" : ""}`}
               onClick={() => goTo(index)}
-              aria-label={`Ir a ${slide.kicker}`}
+              aria-label={`Ir a ${slide.eyebrow}`}
             >
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{slide.supporting}</strong>
+              <strong>{slide.eyebrow}</strong>
             </button>
           ))}
         </div>
@@ -619,43 +600,46 @@ function EditorialCarouselSection() {
 function CoursesSection() {
   return (
     <section className="section shell courses-section">
-      <div className="section-heading section-heading--compact courses-section__heading">
-        <span>Cursos</span>
-        <h2>Aprender criterio tecnico.</h2>
+      <div className="courses-section__intro">
+        <div className="section-heading section-heading--compact courses-section__heading">
+          <span>Cursos</span>
+          <h2>Aprender con criterio.</h2>
+          <p>Casos reales, chequeos utiles y cero humo tecnico.</p>
+        </div>
+        <WhatsAppLink className="secondary-action courses-section__link" message="Hola Leandro, quiero consultar por los cursos de rosfix.">
+          Consultar cursos
+          <ArrowRight size={16} />
+        </WhatsAppLink>
       </div>
       <div className="courses-grid">
         {courses.map(({ eyebrow, title, description, audience, format, status, points, message }) => (
           <article key={title} className="course-panel">
-            <div className="course-panel__header">
+            <div className="course-panel__topline">
               <span>{eyebrow}</span>
+              <b>{status}</b>
+            </div>
+            <div className="course-panel__main">
               <strong>{title}</strong>
               <p>{description}</p>
             </div>
-            <div className="course-panel__facts">
+            <dl className="course-panel__facts" aria-label="Datos del curso">
               <div>
-                <span>Para quien</span>
-                <p>{audience}</p>
+                <dt>Perfil</dt>
+                <dd>{audience}</dd>
               </div>
               <div>
-                <span>Formato</span>
-                <p>{format}</p>
+                <dt>Formato</dt>
+                <dd>{format}</dd>
               </div>
-              <div>
-                <span>Estado</span>
-                <p>{status}</p>
-              </div>
-            </div>
-            <ul className="course-panel__points">
-              {points.map((item) => (
-                <li key={item}>
-                  <ChevronRight size={14} />
-                  <span>{item}</span>
-                </li>
+            </dl>
+            <ul className="course-panel__chips" aria-label="Temas principales">
+              {points.slice(0, 2).map((item) => (
+                <li key={item}>{item}</li>
               ))}
             </ul>
             <WhatsAppLink className="action-link course-panel__action" message={message}>
               <MessageCircle size={16} />
-              Quiero enterarme primero
+              Pedir aviso primero
             </WhatsAppLink>
           </article>
         ))}
