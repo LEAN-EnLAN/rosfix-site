@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
   Check,
   ChevronLeft,
   ChevronRight,
+  House,
   HardDrive,
   Mail,
   MapPin,
@@ -24,6 +26,7 @@ type PageConfig = {
   title: string;
   intro: string;
   path: string;
+  icon: LucideIcon;
 };
 
 type ServiceItem = {
@@ -66,11 +69,11 @@ const WA_NUMBER = "5493412008643";
 const MAIL = "leanplbo@gmail.com";
 
 const pages: PageConfig[] = [
-  { key: "home", title: "Inicio", intro: "Servicio tecnico independiente en Rosario.", path: "./" },
-  { key: "services", title: "Servicios", intro: "Celulares, notebooks y PC.", path: "servicios.html" },
-  { key: "process", title: "Proceso", intro: "Diagnostico y decision claros.", path: "proceso.html" },
-  { key: "about", title: "Tecnico", intro: "Criterio tecnico, sin humo.", path: "sobre-rosfix.html" },
-  { key: "contact", title: "Contacto", intro: "WhatsApp directo.", path: "contacto.html" },
+  { key: "home", title: "Inicio", intro: "Servicio tecnico independiente en Rosario.", path: "./", icon: House },
+  { key: "services", title: "Servicios", intro: "Celulares, notebooks y PC.", path: "servicios.html", icon: HardDrive },
+  { key: "process", title: "Proceso", intro: "Diagnostico y decision claros.", path: "proceso.html", icon: Route },
+  { key: "about", title: "Tecnico", intro: "Criterio tecnico, sin humo.", path: "sobre-rosfix.html", icon: UserCheck },
+  { key: "contact", title: "Contacto", intro: "WhatsApp directo.", path: "contacto.html", icon: MessageCircle },
 ];
 
 const services: ServiceItem[] = [
@@ -348,21 +351,32 @@ function Nav({ currentPage }: { currentPage: PageKey }) {
           </a>
 
           <nav className="nav-desktop" aria-label="Principal">
-            {pages.map((page) => (
-              <a
-                key={page.key}
-                href={page.path}
-                className={page.key === currentPage ? "is-active" : undefined}
-              >
-                {page.title}
-              </a>
-            ))}
+            {pages.map((page) => {
+              const Icon = page.icon;
+
+              return (
+                <a
+                  key={page.key}
+                  href={page.path}
+                  className={page.key === currentPage ? "is-active" : undefined}
+                  aria-current={page.key === currentPage ? "page" : undefined}
+                  title={`${page.title} · ${page.intro}`}
+                >
+                  <span className="nav-desktop__icon" aria-hidden="true">
+                    <Icon size={16} />
+                  </span>
+                  <span className="nav-desktop__text">
+                    <strong>{page.title}</strong>
+                  </span>
+                </a>
+              );
+            })}
           </nav>
 
           <div className="site-header__actions">
             <WhatsAppLink className="action-link site-header__cta" message="Hola Leandro, quiero consultar por un diagnostico.">
               <MessageCircle size={16} />
-              Solicitar diagnostico
+              <span className="site-header__cta-text">Solicitar diagnostico</span>
             </WhatsAppLink>
           </div>
 

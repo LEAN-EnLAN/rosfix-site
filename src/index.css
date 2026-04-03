@@ -143,28 +143,76 @@ img { display: block; max-width: 100%; }
   display: none;
   align-items: center;
   justify-self: center;
-  gap: 6px;
+  gap: 8px;
   min-width: 0;
-  padding: 6px;
+  padding: 4px;
   border: 1px solid rgba(196, 122, 90, 0.18);
   background: linear-gradient(90deg, rgba(216, 160, 138, 0.06), rgba(255, 255, 255, 0.015));
 }
 
 .nav-desktop a {
+  position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
   min-height: 40px;
   padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
   color: var(--muted);
-  font-size: 0.95rem;
-  letter-spacing: -0.02em;
-  transition: color 140ms ease, background-color 140ms ease, border-color 140ms ease;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: color 140ms ease, background-color 140ms ease, border-color 140ms ease, width 160ms ease, padding 160ms ease;
 }
 
-.nav-desktop a:hover { color: var(--accent-soft); }
+.nav-desktop__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: color 140ms ease, transform 140ms ease;
+}
+
+.nav-desktop__text {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 8.5rem;
+  opacity: 1;
+  overflow: hidden;
+  transition: max-width 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+
+.nav-desktop__text strong {
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.nav-desktop a:hover,
+.nav-desktop a:focus-visible {
+  color: var(--text);
+  border-color: rgba(196, 122, 90, 0.28);
+  background: rgba(237, 237, 237, 0.04);
+}
+
+.nav-desktop a:hover .nav-desktop__icon,
+.nav-desktop a:focus-visible .nav-desktop__icon {
+  color: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
 .nav-desktop a.is-active {
   color: var(--text);
+  border-color: rgba(196, 122, 90, 0.24);
   background: rgba(237, 237, 237, 0.04);
+}
+
+.nav-desktop a.is-active .nav-desktop__icon {
+  color: var(--accent-soft);
 }
 
 .menu-button {
@@ -195,6 +243,13 @@ img { display: block; max-width: 100%; }
 
 .site-header__cta {
   min-width: 220px;
+}
+
+.site-header__cta-text {
+  display: inline-flex;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .mobile-nav-wrap {
@@ -1168,14 +1223,21 @@ img { display: block; max-width: 100%; }
   color: var(--muted);
   line-height: 1.74;
 }
-.services-overview__intro {
+.services-overview__intro,
+.trust-overview__intro,
+.courses-section__intro {
   display: grid;
   gap: 18px;
-  align-items: end;
+  align-items: center;
 }
-.services-overview__link {
+
+.services-overview__link,
+.trust-overview__link,
+.courses-section__link {
   justify-self: start;
+  align-self: center;
 }
+
 .services-overview__grid {
   display: grid;
   gap: clamp(1.75rem, 4vw, 2.75rem);
@@ -1901,19 +1963,66 @@ img { display: block; max-width: 100%; }
   color: var(--text);
 }
 
-@media (max-width: 767px) {
-  .hero-block::before,
-  .site-footer::after {
-    opacity: 0.68;
+@media (min-width: 768px) and (max-width: 1013px) {
+  .site-header__row {
+    gap: 18px;
   }
 
-  .hero-block::after,
-  .site-footer::before {
-    background-size: 20px 20px, 22px 22px;
+  .nav-desktop {
+    gap: 4px;
   }
 
-  .hero-block::after {
-    opacity: 0.1;
+  .nav-desktop a {
+    width: 46px;
+    padding-inline: 0;
+    justify-content: center;
+  }
+
+  .nav-desktop a:hover,
+  .nav-desktop a:focus-visible,
+  .nav-desktop a.is-active {
+    width: 152px;
+    justify-content: flex-start;
+    padding-inline: 12px 14px;
+  }
+
+  .nav-desktop__text {
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+
+  .nav-desktop a:hover .nav-desktop__text,
+  .nav-desktop a:focus-visible .nav-desktop__text,
+  .nav-desktop a.is-active .nav-desktop__text {
+    max-width: 8rem;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .site-header__cta {
+    min-width: 46px;
+    padding-inline: 14px;
+    overflow: hidden;
+  }
+
+  .site-header__cta-text {
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: max-width 160ms ease, opacity 160ms ease, transform 160ms ease;
+  }
+
+  .site-header__cta:hover,
+  .site-header__cta:focus-visible {
+    min-width: 186px;
+  }
+
+  .site-header__cta:hover .site-header__cta-text,
+  .site-header__cta:focus-visible .site-header__cta-text {
+    max-width: 11rem;
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
