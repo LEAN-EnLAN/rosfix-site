@@ -6,6 +6,7 @@ import {
   ChevronLeft,
   ChevronRight,
   HardDrive,
+  Mail,
   MapPin,
   Menu,
   MessageCircle,
@@ -861,7 +862,7 @@ function ContactForm() {
       <div className="field-row">
         <label>
           <span>Nombre</span>
-          <input required name="nombre" type="text" placeholder="Ej: Martin" />
+          <input required name="nombre" type="text" placeholder="Martin" />
         </label>
         <label>
           <span>Equipo</span>
@@ -880,8 +881,8 @@ function ContactForm() {
       </label>
 
       <label>
-        <span>Que le pasa?</span>
-        <textarea required name="problema" rows={5} placeholder="Contame sintomas, si se golpeo o mojo, y si alguien ya lo reviso." />
+        <span>Sintoma</span>
+        <textarea required name="problema" rows={5} placeholder="Que hace, que deja de hacer, si se golpeo, si se mojo o si ya lo revisaron." />
       </label>
 
       <fieldset>
@@ -900,7 +901,7 @@ function ContactForm() {
 
       <button type="submit" className="primary-action">
         <MessageCircle size={17} />
-        Contactar rosfix
+        Enviar por WhatsApp
       </button>
     </form>
   );
@@ -927,8 +928,20 @@ function Footer() {
         </div>
         <div>
           <span>Contacto</span>
-          <p>WhatsApp: +54 9 341 2008643</p>
-          <p>{MAIL}</p>
+          <div className="footer-contact">
+            <a href={`https://wa.me/${WA_NUMBER}`} className="footer-contact__item" target="_blank" rel="noreferrer">
+              <MessageCircle size={16} />
+              <span>+54 9 341 2008643</span>
+            </a>
+            <a href={`mailto:${MAIL}`} className="footer-contact__item">
+              <Mail size={16} />
+              <span>{MAIL}</span>
+            </a>
+            <div className="footer-contact__item">
+              <MapPin size={16} />
+              <span>Rosario, Santa Fe</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
@@ -1162,8 +1175,8 @@ function ContactPage() {
     <>
       <PageHero
         eyebrow="Contacto"
-        title="Contame que le pasa a tu equipo."
-        body="Con una descripcion clara ya se puede ordenar el caso."
+        title="Contame el equipo y el sintoma."
+        body="Con eso ya se puede ordenar el caso."
         facts={[
           ["Canal", "WhatsApp directo"],
           ["Ciudad", "Rosario, Santa Fe"],
@@ -1195,27 +1208,28 @@ function ContactPage() {
       />
 
       <section className="section section-editorial shell contact-layout">
-        <div>
-          <div className="section-heading">
-            <span>Contacto</span>
-            <h2>Escribime directamente</h2>
+        <div className="contact-layout__main">
+          <div className="contact-layout__lead">
+            <span>WhatsApp directo</span>
+            <h2>Manda equipo, modelo y falla.</h2>
+            <p>Lo justo para empezar bien.</p>
           </div>
           <ContactForm />
         </div>
-        <aside className="contact-aside">
+        <aside className="contact-aside" aria-label="Guia rapida para escribir">
           <div>
             <UserCheck size={18} />
-            <strong>Atencion directa</strong>
-            <p>Consulta y seguimiento sin intermediarios.</p>
+            <strong>Que mandar</strong>
+            <p>Equipo, modelo y que hace o deja de hacer.</p>
           </div>
           <div>
             <ShieldCheck size={18} />
-            <strong>Diagnostico honesto</strong>
-            <p>Primero entender bien el problema.</p>
+            <strong>Como sigue</strong>
+            <p>Se revisa, se explica y despues se decide.</p>
           </div>
           <div>
             <MapPin size={18} />
-            <strong>Base local</strong>
+            <strong>Base</strong>
             <p>Rosario, Santa Fe.</p>
           </div>
         </aside>
