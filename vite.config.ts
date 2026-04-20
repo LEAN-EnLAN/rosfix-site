@@ -10,6 +10,9 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
   base: "./",
   plugins: [react(), tailwindcss()],
+  server: {
+    host: "0.0.0.0",
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
@@ -20,7 +23,6 @@ export default defineConfig({
       input: {
         home: path.resolve(__dirname, "index.html"),
         services: path.resolve(__dirname, "servicios.html"),
-        diagnostic: path.resolve(__dirname, "diagnostico.html"),
         process: path.resolve(__dirname, "proceso.html"),
         about: path.resolve(__dirname, "sobre-rosfix.html"),
         contact: path.resolve(__dirname, "contacto.html"),
