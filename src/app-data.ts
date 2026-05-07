@@ -98,7 +98,7 @@ export const sharedCtaCopy = {
 
 export const technicianProfile = {
   name: "Leandro",
-  handle: "leandro.rosfix",
+  handle: "rosfix_",
   avatar: "assets/tecnico-avatar.jpg",
   portrait: "assets/tecnico-selfie.png",
   workday: "assets/hero-about.png",

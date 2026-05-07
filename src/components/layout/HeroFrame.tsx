@@ -9,7 +9,7 @@ type HeroFrameProps = {
   body: string;
   note?: string;
   actions?: ReactNode;
-  aside: ReactNode;
+  aside?: ReactNode;
   facts?: HeroFact[];
   variant?: "home" | "inner";
   tone?: "home" | "services" | "process" | "about" | "contact";
@@ -34,6 +34,7 @@ export function HeroFrame({
         "hero-block shell",
         `hero-block--${variant}`,
         `hero-block--${tone}`,
+        !aside && "hero-block--solo",
         reverse && "hero-block--reverse",
       )}
     >
@@ -58,7 +59,7 @@ export function HeroFrame({
         {note ? <div className="hero-note">{note}</div> : null}
         {actions ? <div className="hero-actions">{actions}</div> : null}
       </div>
-      <div className="hero-aside">{aside}</div>
+      {aside ? <div className="hero-aside">{aside}</div> : null}
     </section>
   );
 }

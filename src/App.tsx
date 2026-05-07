@@ -19,7 +19,6 @@ import { DiagnosticIntake } from "./components/DiagnosticIntake";
 import {
   AboutHeroAside,
   ContactHeroAside,
-  HomeHeroAside,
   ProcessHeroAside,
   ServicesHeroAside,
 } from "./components/hero/PageHeroAsides";
@@ -68,7 +67,6 @@ function HomePage() {
             </a>
           </>
         }
-        aside={<HomeHeroAside />}
         tone="home"
       />
 
@@ -127,6 +125,10 @@ function ServicesPage() {
         intro="Celulares, notebooks y PC con foco en uso real."
         items={servicesEditorialBlocks}
       />
+
+      <ContentDivider />
+
+      <CoursesSection />
 
       <ContentDivider />
 

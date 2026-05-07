@@ -1,7 +1,6 @@
 import { Mail, MapPin, MessageCircle } from "lucide-react";
 
-import { MAIL, WA_NUMBER, pages, sharedCtaCopy } from "../../app-data";
-import { WhatsAppLink } from "../WhatsAppLink";
+import { MAIL, WA_NUMBER, pages } from "../../app-data";
 
 export function SiteFooter() {
   return (
@@ -9,12 +8,7 @@ export function SiteFooter() {
       <div className="shell footer-grid">
         <div>
           <strong>rosfix</strong>
-          <p>Diagnostico claro y trato directo.</p>
           <p>Servicio tecnico en Rosario.</p>
-          <WhatsAppLink className="action-link footer-contact__cta" message={sharedCtaCopy.requestDiagnosisMessage}>
-            <MessageCircle size={16} />
-            {sharedCtaCopy.requestDiagnosisLabel}
-          </WhatsAppLink>
         </div>
         <div>
           <span>Paginas</span>

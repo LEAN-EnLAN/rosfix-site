@@ -20,37 +20,19 @@ export function IntakeStepper({
   canGoNext,
   nextLabel,
 }: IntakeStepperProps) {
+  const progress = ((currentStep + 1) / steps.length) * 100;
+
   return (
     <div className="intake-stepper">
       <div className="intake-stepper__status">
-        <span>Progreso</span>
         <strong>
           Paso {currentStep + 1} de {steps.length}
         </strong>
+        <span>{steps[currentStep].title}</span>
       </div>
-
-      <ol className="intake-stepper__list" aria-label="Pasos del intake">
-        {steps.map((step, index) => {
-          const isCurrent = index === currentStep;
-          const isComplete = index < currentStep;
-
-          return (
-            <li
-              key={step.id}
-              className={`intake-stepper__item${isCurrent ? " is-current" : ""}${isComplete ? " is-complete" : ""}`}
-            >
-              <span className="intake-stepper__marker" aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="intake-stepper__copy">
-                <small>{step.eyebrow}</small>
-                <strong>{step.title}</strong>
-              </span>
-            </li>
-          );
-        })}
-      </ol>
-
+      <div className="intake-stepper__bar" role="progressbar" aria-valuenow={currentStep + 1} aria-valuemin={1} aria-valuemax={steps.length}>
+        <span style={{ width: `${progress}%` }} />
+      </div>
       <div className="intake-stepper__controls">
         <button type="button" className="secondary-action" onClick={onBack} disabled={!canGoBack}>
           <ChevronLeft size={16} />
