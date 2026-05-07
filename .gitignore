@@ -5,3 +5,7 @@ dev-server.err.log
 dev-server.out.log
 tmp_*.html
 tmp/
+dev.log
+server.log
+tsconfig.tsbuildinfo
+.codex
