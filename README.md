@@ -16,7 +16,6 @@ Sitio multipagina para `rosfix`, un servicio tecnico independiente de Rosario or
 - `proceso.html`
 - `sobre-rosfix.html`
 - `contacto.html`
-- `diagnostico.html`
 
 ## Desarrollo
 

@@ -4,3 +4,4 @@ dist/
 dev-server.err.log
 dev-server.out.log
 tmp_*.html
+tmp/
