@@ -11,7 +11,6 @@ import {
   processFaq,
   servicesEditorialBlocks,
   sharedCtaCopy,
-  technicianProfile,
   WA_NUMBER,
   type PageKey,
 } from "./app-data";
@@ -238,14 +237,6 @@ function AboutPage() {
       />
 
       <ExperienceSection />
-
-      <ImageStatementSection
-        ariaLabel="Leandro en su espacio de trabajo"
-        eyebrow="Tecnico"
-        title="Leandro trabaja con diagnostico claro, seguimiento directo y limites tecnicos honestos."
-        image={technicianProfile.workday}
-        align="left"
-      />
 
       <ContentDivider />
 
