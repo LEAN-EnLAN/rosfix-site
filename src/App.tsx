@@ -32,7 +32,6 @@ import { EditorialCarouselSection } from "./components/sections/EditorialCarouse
 import { EditorialNarrativeSection } from "./components/sections/EditorialNarrativeSection";
 import { FaqSection } from "./components/sections/FaqSection";
 import { FeatureRibbon } from "./components/sections/FeatureRibbon";
-import { ImageStatementSection } from "./components/sections/ImageStatementSection";
 import { ProcessRailSection } from "./components/sections/ProcessRailSection";
 import { ServicesOverviewSection } from "./components/sections/ServicesOverviewSection";
 import { TrustOverviewSection } from "./components/sections/TrustOverviewSection";
@@ -73,12 +72,6 @@ function HomePage() {
       <ServicesOverviewSection />
       <ContentDivider />
       <ProcessRailSection />
-      <ImageStatementSection
-        ariaLabel="Banco de trabajo de rosfix"
-        eyebrow="Banco real"
-        title="Herramientas, lectura tecnica y criterio antes de tocar piezas."
-        image="assets/hero-workbench.png"
-      />
       <EditorialCarouselSection />
       <ContentDivider />
       <TrustOverviewSection />
