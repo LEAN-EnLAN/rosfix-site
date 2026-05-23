@@ -5,14 +5,17 @@ import { editorialCarouselSlides } from "../../app-data";
 
 export function EditorialCarouselSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || isPaused) return;
     const intervalId = window.setInterval(() => {
       setCurrentIndex((value) => (value + 1) % editorialCarouselSlides.length);
     }, 5600);
 
     return () => window.clearInterval(intervalId);
-  }, []);
+  }, [isPaused]);
 
   const goTo = (index: number) => setCurrentIndex(index);
   const goPrev = () => setCurrentIndex((value) => (value - 1 + editorialCarouselSlides.length) % editorialCarouselSlides.length);
@@ -30,7 +33,12 @@ export function EditorialCarouselSection() {
               <div className="editorial-carousel__frame">
                 <div className="editorial-carousel__grid" aria-hidden="true" />
                 <div className="editorial-carousel__media">
-                  <img src={slide.image} alt={slide.eyebrow} />
+                  <img src={slide.image} alt={`${slide.label}: ${slide.statement}`} />
+                </div>
+                <div className="editorial-carousel__overlay">
+                  <span>{slide.label}</span>
+                  <strong>{slide.eyebrow}</strong>
+                  <p>{slide.statement}</p>
                 </div>
               </div>
             </article>
@@ -63,6 +71,9 @@ export function EditorialCarouselSection() {
           </div>
           <button type="button" className="editorial-carousel__button" onClick={goNext} aria-label="Slide siguiente">
             <ChevronRight size={16} />
+          </button>
+          <button type="button" className="editorial-carousel__button" onClick={() => setIsPaused((v) => !v)} aria-label={isPaused ? "Reanudar carrusel" : "Pausar carrusel"}>
+            {isPaused ? "Play" : "Pausa"}
           </button>
         </div>
       </div>

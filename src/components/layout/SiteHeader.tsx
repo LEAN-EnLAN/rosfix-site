@@ -21,7 +21,7 @@ function BrandMark({ onNavigate }: Pick<NavLinksProps, "onNavigate">) {
       <img src="assets/rosfix-mark.svg" alt="" className="brand-mark__logo" />
       <span>
         <strong>rosfix</strong>
-        <small>Diagnostico claro en Rosario</small>
+        <small>Diagnóstico claro en Rosario</small>
       </span>
     </a>
   );
@@ -165,6 +165,9 @@ export function SiteHeader({ currentPage }: SiteHeaderProps) {
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
+          <WhatsAppLink className="menu-button" message={sharedCtaCopy.requestDiagnosisForDeviceMessage} aria-label="Abrir WhatsApp">
+            <MessageCircle size={18} />
+          </WhatsAppLink>
         </div>
       </div>
 
@@ -175,11 +178,11 @@ export function SiteHeader({ currentPage }: SiteHeaderProps) {
             className="shell mobile-nav"
             role="dialog"
             aria-modal="true"
-            aria-label="Menu principal"
+            aria-label="Menú principal"
           >
             <div className="mobile-nav__intro">
-              <span>Servicio tecnico</span>
-              <p>Diagnostico real, trato directo y seguimiento por WhatsApp.</p>
+              <span>Servicio técnico</span>
+              <p>Diagnóstico real, trato directo y seguimiento por WhatsApp.</p>
             </div>
 
             <MobileNavLinks currentPage={currentPage} onNavigate={closeMenu} />
