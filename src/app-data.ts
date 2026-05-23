@@ -64,10 +64,10 @@ export const WA_NUMBER = "5493412008643";
 export const MAIL = "leanplbo@gmail.com";
 
 export const pageCopyByKey: Record<PageKey, PageCopy> = {
-  home: { title: "Inicio", intro: "Servicio tecnico independiente en Rosario.", path: "./" },
+  home: { title: "Inicio", intro: "Servicio técnico independiente en Rosario.", path: "./" },
   services: { title: "Servicios", intro: "Celulares, notebooks y PC.", path: "servicios.html" },
-  process: { title: "Proceso", intro: "Diagnostico y decision claros.", path: "proceso.html" },
-  about: { title: "Tecnico", intro: "Criterio tecnico, sin humo.", path: "sobre-rosfix.html" },
+  process: { title: "Proceso", intro: "Diagnóstico y decisión claros.", path: "proceso.html" },
+  about: { title: "Técnico", intro: "Criterio técnico, sin humo.", path: "sobre-rosfix.html" },
   contact: { title: "Contacto", intro: "WhatsApp directo.", path: "contacto.html" },
 };
 
@@ -88,9 +88,9 @@ export const pages: PageConfig[] = pageOrder.map((key) => ({
 }));
 
 export const sharedCtaCopy = {
-  requestDiagnosisLabel: "Pedir diagnostico",
-  requestDiagnosisMessage: "Hola Leandro, quiero consultar por un diagnostico.",
-  requestDiagnosisForDeviceMessage: "Hola Leandro, quiero pedir un diagnostico para mi equipo.",
+  requestDiagnosisLabel: "Pedir diagnóstico",
+  requestDiagnosisMessage: "Hola Leandro, quiero consultar por un diagnóstico.",
+  requestDiagnosisForDeviceMessage: "Hola Leandro, quiero pedir un diagnóstico para mi equipo.",
   contactLabel: "Ver contacto",
   whatsappLabel: "Hablar por WhatsApp",
   whatsappMessage: "Hola Leandro, quiero consultar mi equipo por WhatsApp.",
@@ -115,28 +115,26 @@ export const services: ServiceItem[] = [
     title: "Celulares",
     icon: MonitorSmartphone,
     text: "Fallas comunes, reemplazo de partes y puesta a punto para uso diario.",
-    points: ["Pantalla, bateria y carga", "Cuentas, traspasos y configuracion"],
+    points: ["Pantalla, batería y carga", "Cuentas, traspasos y configuración"],
   },
   {
-    title: "Diagnostico tecnico",
+    title: "Diagnóstico técnico",
     icon: Wrench,
-    text: "Revision para saber si conviene seguir, frenar o derivar.",
-    points: ["Diagnostico antes de intervenir", "Opciones claras y decision util"],
+    text: "Revisión para saber si conviene seguir, frenar o derivar.",
+    points: ["Diagnóstico antes de intervenir", "Opciones claras y decisión útil"],
   },
 ];
 
 export const featuredLines = [
-  "Atencion directa. Sin intermediarios.",
-  "Diagnostico real antes de presupuestar.",
-  "Servicio tecnico local en Rosario.",
-  "Explicacion clara de principio a fin.",
+  "Atención directa. Sin intermediarios.",
+  "Diagnóstico real antes de presupuestar.",
 ];
 
 export const editorialCarouselSlides: CarouselSlide[] = [
   {
-    eyebrow: "Diagnostico cercano",
+    eyebrow: "Diagnóstico cercano",
     label: "Celulares",
-    statement: "Hablar directo con quien revisa tu equipo mejora el diagnostico desde el primer mensaje.",
+    statement: "Hablar directo con quien revisa tu equipo mejora el diagnóstico desde el primer mensaje.",
     image: "assets/editorial-diagnostico-cercano.png",
   },
   {
@@ -146,92 +144,92 @@ export const editorialCarouselSlides: CarouselSlide[] = [
     image: "assets/editorial-rendimiento-real.png",
   },
   {
-    eyebrow: "Decision clara",
-    label: "Diagnostico tecnico",
+    eyebrow: "Decisión clara",
+    label: "Diagnóstico técnico",
     statement: "No todo caso necesita arreglo: a veces conviene frenar, explicar bien o derivar a tiempo.",
     image: "assets/editorial-decision-clara.png",
   },
 ];
 
 export const processSteps = [
-  ["01", "Escribis", "Contas que equipo es, que sintomas tiene y desde cuando pasa."],
+  ["01", "Escribís", "Contás qué equipo es, qué síntomas tiene y desde cuándo pasa."],
   ["02", "Se revisa", "Se ordena el problema y se descartan supuestos antes de tocar piezas."],
-  ["03", "Se explica", "Se comunica con claridad que pasa, que opciones hay y que conviene hacer."],
+  ["03", "Se explica", "Se comunica con claridad qué pasa, qué opciones hay y qué conviene hacer."],
   ["04", "Se resuelve", "Se repara, se ajusta o se frena si el arreglo no tiene sentido."],
 ] as const;
 
 export const trustRows = [
-  ["Hablas con quien revisa", "Sin intermediarios entre consulta, diagnostico y entrega."],
-  ["Primero se confirma la falla", "La revision viene antes que cambiar piezas."],
-  ["Si no conviene reparar, se dice", "La recomendacion tambien tiene que cuidar tu plata."],
+  ["Hablas con quien revisa", "Sin intermediarios entre consulta, diagnóstico y entrega."],
+  ["Primero se confirma la falla", "La revisión viene antes que cambiar piezas."],
+  ["Si no conviene reparar, se dice", "La recomendación también tiene que cuidar tu plata."],
 ] as const;
 
 export const faq = [
-  ["Conviene llevarlo aunque falle solo a veces?", "Si. Cuando una falla aparece de manera intermitente, el contexto ayuda mucho: cuando pasa, si calienta, si se descarga rapido o si aparece despues de un golpe, humedad o actualizacion."],
-  ["Hace falta llevar cargador, funda o accesorios?", "Solo si el problema tiene relacion con carga, bateria, audio, perifericos o compatibilidad. Si no, normalmente alcanza con el equipo y una descripcion clara."],
-  ["Tengo informacion importante adentro. Lo aviso antes?", "Si, siempre conviene avisar si hay datos sensibles, cuentas activas o contenido que no queres perder de vista. Eso ordena mejor la revision desde el principio."],
-  ["Si ya lo vio otro tecnico, igual sirve consultarlo?", "Si. Lo que te hayan dicho antes puede aportar pistas, pero igual conviene revisar el equipo con criterio propio y no trabajar solo sobre una conclusion ajena."],
+  ["Conviene llevarlo aunque falle solo a veces?", "Si. Cuando una falla aparece de manera intermitente, el contexto ayuda mucho: cuando pasa, si calienta, si se descarga rápido o si aparece después de un golpe, humedad o actualización."],
+  ["Hace falta llevar cargador, funda o accesorios?", "Solo si el problema tiene relación con carga, batería, audio, periféricos o compatibilidad. Si no, normalmente alcanza con el equipo y una descripcion clara."],
+  ["Tengo información importante adentro. Lo aviso antes?", "Si, siempre conviene avisar si hay datos sensibles, cuentas activas o contenido qué no queres perder de vista. Eso ordena mejor la revision desde el principio."],
+  ["Si ya lo vio otro técnico, igual sirve consultarlo?", "Si. Lo que te hayan dicho antes puede aportar pistas, pero igual conviene revisar el equipo con criterio propio y no trabajar solo sobre una conclusion ajena."],
 ] as const;
 
 export const processFaq = [
   ["Sirve mandar fotos o videos antes de acercarlo?", "Si. Una foto de una rotura, un video de la falla o un mensaje bien detallado puede ordenar mucho mejor el caso antes de revisar el equipo en persona."],
-  ["Que pasa si la falla aparece y desaparece?", "Tambien se toma en serio. Cuando el problema es intermitente, lo mas util es registrar en que momento aparece y bajo que condiciones para no revisar a ciegas."],
-  ["Se aprueba algo antes de avanzar con gastos?", "Si. La idea es ordenar primero el diagnostico y despues decidir con informacion clara si tiene sentido seguir, frenar o buscar otra salida."],
-  ["Y si el equipo necesita algo que ya no conviene ponerle?", "Tambien forma parte del proceso decirlo a tiempo. A veces la mejor decision no es avanzar, sino evitar un gasto desproporcionado para el equipo que tenes."],
+  ["Qué pasa si la falla aparece y desaparece?", "También se toma en serio. Cuando el problema es intermitente, lo más útil es registrar en que momento aparece y bajo que condiciones para no revisar a ciegas."],
+  ["Se aprueba algo antes de avanzar con gastos?", "Si. La idea es ordenar primero el diagnóstico y después decidir con información clara si tiene sentido seguir, frenar o buscar otra salida."],
+  ["Y si el equipo necesita algo que ya no conviene ponerle?", "También forma parte del proceso decirlo a tiempo. A veces la mejor decisión no es avanzar, sino evitar un gasto desproporcionado para el equipo que tenes."],
 ] as const;
 
 export const aboutFaq = [
-  ["Por que rosfix no toma cualquier caso?", "Porque trabajar con criterio tambien implica marcar limites. Tomar algo que no se puede resolver bien solo agrega ruido, falsas expectativas y malas decisiones."],
-  ["Decir que no a tiempo tambien es parte del servicio?", "Si. En muchos casos, una respuesta honesta antes de intervenir vale mas que forzar una reparacion que no cierra tecnica ni economicamente."],
-  ["Que mira primero un tecnico serio antes de tocar un equipo?", "Sintomas reales, contexto de uso, antecedentes del problema y si alguien ya intervino antes. Sin esa base, cualquier decision tecnica arranca torcida."],
+  ["Por que rosfix no toma cualquier caso?", "Porque trabajar con criterio también implica marcar limites. Tomar algo qué no se puede resolver bien solo agrega ruido, falsas expectativas y malas decisiónes."],
+  ["Decir qué no a tiempo también es parte del servicio?", "Si. En muchos casos, una respuesta honesta antes de intervenir vale más que forzar una reparación qué no cierra tecnica ni economicamente."],
+  ["Qué mira primero un técnico serio antes de tocar un equipo?", "Síntomás reales, contexto de uso, antecedentes del problema y si alguien ya intervino antes. Sin esa base, cualquier decisión tecnica arranca torcida."],
   ["Si mi caso no encaja con lo que haces, igual me lo van a decir claro?", "Si. La idea no es retener cualquier consulta, sino orientar bien cada caso aunque la mejor salida sea no seguir con rosfix."],
 ] as const;
 
 export const experience = [
-  ["Rosario Tecno", "Experiencia en diagnostico y reparacion de celulares, especialmente en dispositivos Apple e iOS, con trabajo tecnico orientado a calidad, tiempos y buena comunicacion."],
-  ["Trabajo independiente", "Actividad como tecnico informatico independiente desde 2023, brindando soporte integral, diagnostico de hardware y gestion autonoma de clientes, repuestos y control de calidad."],
-  ["Soporte e infraestructura educativa", "Participacion en despliegue tecnico, mantenimiento y resolucion de incidencias de hardware y conectividad en entornos educativos junto al equipo docente del Colegio San Jose / Casa Salesiana."],
+  ["Rosario Tecno", "Experiencia en diagnóstico y reparación de celulares, especialmente en dispositivos Apple e iOS, con trabajo técnico orientado a calidad, tiempos y buena comúnicacion."],
+  ["Trabajo independiente", "Actividad como técnico informatico independiente desde 2023, brindando soporte integral, diagnóstico de hardware y gestión autónoma de clientes, repuestos y control de calidad."],
+  ["Soporte e infraestructura educativa", "Participación en despliegue técnico, mantenimiento y resolución de incidencias de hardware y conectividad en entornos educativos junto al equipo docente del Colegio San José / Casa Salesiana."],
 ];
 
 export const servicesEditorialBlocks: EditorialItem[] = [
   {
     eyebrow: "android e iphone",
-    title: "Celulares con fallas comunes y traspasos.",
-    text: "Bateria, modulo, pin, configuraciones, cuentas y orden general.",
+    title: "Celulares con fallas comúnes y traspasos.",
+    text: "Bateria, modulo, pin, configuraciónes, cuentas y orden general.",
   },
   {
     eyebrow: "pc y notebook",
     title: "PC y notebooks que todavia pueden rendir mejor.",
-    text: "Mantenimiento, formateo, mejoras puntuales y revision de hardware comun.",
+    text: "Mantenimiento, formateo, mejoras puntuales y revision de hardware común.",
   },
   {
     eyebrow: "uso cotidiano",
-    title: "Problemas chicos que frenan todo.",
-    text: "WhatsApp, cuentas, lentitud y configuraciones que hacen perder tiempo.",
+    title: "Problemás chicos que frenan todo.",
+    text: "WhatsApp, cuentas, lentitud y configuraciónes que hacen perder tiempo.",
   },
 ];
 
 export const courses: CourseOffer[] = [
   {
     eyebrow: "curso 01",
-    title: "Diagnostico con criterio para fallas reales.",
-    description: "Leer sintomas y revisar con mas orden.",
-    audience: "Inicio tecnico / autodidacta.",
+    title: "Diagnóstico con criterio para fallas reales.",
+    description: "Leer síntomás y revisar con más orden.",
+    audience: "Inicio técnico / autodidacta.",
     format: "Casos reales / clases cortas.",
     status: "Proxima apertura.",
     points: [
       "Preguntas que ordenan el caso",
-      "Primer chequeo util",
+      "Primer chequeo útil",
       "Cuando frenar o derivar",
     ],
-    message: "Hola Leandro, quiero enterarme primero del curso de diagnostico con criterio.",
+    message: "Hola Leandro, quiero enterarme primero del curso de diagnóstico con criterio.",
   },
   {
     eyebrow: "curso 02",
     title: "Mantenimiento y criterio para PC y notebooks.",
-    description: "Mejoras reales y mantenimiento util.",
+    description: "Mejoras reales y mantenimiento útil.",
     audience: "Usuarios curiosos / etapa inicial.",
-    format: "Chequeos guiados / equipos comunes.",
+    format: "Chequeos guiados / equipos comúnes.",
     status: "En desarrollo.",
     points: [
       "Limpieza y temperatura",
@@ -246,22 +244,22 @@ export const processEditorialSteps: EditorialItem[] = [
   {
     eyebrow: "01",
     title: "Recepcion y estado inicial.",
-    text: "Se ordena el caso desde informacion concreta.",
+    text: "Se ordena el caso desde información concreta.",
   },
   {
     eyebrow: "02",
-    title: "Diagnostico con plazo claro.",
-    text: "En hasta 2 dias ya deberias saber que pasa.",
+    title: "Diagnóstico con plazo claro.",
+    text: "En hasta 2 días ya deberias saber que pasa.",
   },
   {
     eyebrow: "03",
-    title: "Presupuesto despues de revisar.",
-    text: "Primero verdad tecnica. Despues decision.",
+    title: "Presupuesto después de revisar.",
+    text: "Primero verdad tecnica. Después decisión.",
   },
   {
     eyebrow: "04",
     title: "Reparacion o derivacion con contexto.",
-    text: "Si no sigue aca, igual salis con una base util.",
+    text: "Si no sigue aca, igual salís con una base útil.",
   },
 ];
 
@@ -274,11 +272,11 @@ export const aboutEditorialPrinciples: EditorialItem[] = [
   {
     eyebrow: "limite",
     title: "Si no conviene, se dice.",
-    text: "Forzar una reparacion tambien puede ser un error.",
+    text: "Forzar una reparación también puede ser un error.",
   },
   {
-    eyebrow: "utilidad",
-    title: "Aunque no lo haga yo, igual te tiene que servir.",
-    text: "Un diagnostico util o una buena derivacion tambien cuentan.",
+    eyebrow: "útilidad",
+    title: "Aunqué no lo haga yo, igual te tiene que servir.",
+    text: "Un diagnóstico útil o una buena derivacion también cuentan.",
   },
 ];

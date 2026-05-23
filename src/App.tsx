@@ -50,9 +50,9 @@ function HomePage() {
     <>
       <HeroFrame
         eyebrow="rosfix"
-        title="Diagnostico real para equipos de uso diario."
-        body="Celulares, notebooks y PC con trato directo en Rosario."
-        note="Primero se entiende el caso. Despues se decide que conviene hacer."
+        title="Servicio técnico claro para celulares, notebooks y PC en Rosario."
+        body="Diagnóstico real para equipos de uso diario, con trato directo."
+        note="Contá el problema y empezá el diagnóstico por WhatsApp."
         actions={
           <>
             <WhatsAppLink className="primary-action" message={sharedCtaCopy.requestDiagnosisMessage}>
@@ -86,8 +86,8 @@ function ServicesPage() {
     <>
       <HeroFrame
         eyebrow="Servicios"
-        title="Que entra, que no, y como se trabaja."
-        body="Celulares, notebooks y PC de uso cotidiano. Fallas comunes, mejoras puntuales y diagnostico antes de gastar."
+        title="Qué entra, qué no y cómo se trabaja."
+        body="Celulares, notebooks y PC de uso cotidiano. Fallas comunes, mejoras puntuales y diagnóstico antes de gastar."
         facts={[
           ["Toma hoy", "Celulares, notebooks y PC"],
           ["No promete", "Microsoldadura ni board-level"],
@@ -101,7 +101,7 @@ function ServicesPage() {
               Consultar mi equipo
             </WhatsAppLink>
             <a href="proceso.html" className="secondary-action">
-              Ver metodo
+              Ver método
               <ArrowRight size={16} />
             </a>
           </>
@@ -120,10 +120,6 @@ function ServicesPage() {
 
       <ContentDivider />
 
-      <CoursesSection />
-
-      <ContentDivider />
-
       <ContentArchive
         eyebrow="Consultas"
         title="Dudas frecuentes antes de traer tu equipo"
@@ -131,7 +127,7 @@ function ServicesPage() {
       >
         <FaqSection
           eyebrow="Consultas"
-          title="Respuestas utiles antes de acercar un equipo"
+          title="Respuestas útiles antes de acercar un equipo"
           items={faq}
         />
       </ContentArchive>
@@ -144,8 +140,8 @@ function ProcessPage() {
     <>
       <HeroFrame
         eyebrow="Proceso"
-        title="Asi se ordena un caso en rosfix."
-        body="Mensaje, revision, diagnostico y decision. Sin limbo tecnico ni presupuesto lanzado al aire."
+        title="Así se ordena un caso en rosfix."
+        body="Mensaje, revisión, diagnóstico y decisión. Sin limbo técnico ni presupuesto lanzado al aire."
         facts={[
           ["Primer paso", "Equipo, modelo y sintoma"],
           ["Diagnostico", "Hasta 48 hs"],
@@ -156,7 +152,7 @@ function ProcessPage() {
           <>
             <WhatsAppLink className="primary-action">
               <MessageCircle size={17} />
-              Pedir revision
+              Pedir revisión
             </WhatsAppLink>
             <a href="sobre-rosfix.html" className="secondary-action">
               Conocer rosfix
@@ -171,8 +167,8 @@ function ProcessPage() {
 
       <EditorialNarrativeSection
         eyebrow="Proceso"
-        title="Asi se ordena un caso en rosfix."
-        intro="Mensaje, revision, diagnostico y decision."
+        title="Así se ordena un caso en rosfix."
+        intro="Mensaje, revisión, diagnóstico y decisión."
         items={processEditorialSteps}
       />
 

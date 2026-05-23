@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { IntakeStepper } from "./IntakeStepper";
 import { IntakeSummary } from "./IntakeSummary";
 import {
@@ -136,11 +137,6 @@ export function DiagnosticIntake({ whatsAppNumber }: { whatsAppNumber: string })
       <IntakeStepper
         steps={intakeSteps}
         currentStep={currentStep}
-        onBack={handleBack}
-        onNext={handleNext}
-        canGoBack={currentStep > 0}
-        canGoNext={currentStep < intakeSteps.length - 1}
-        nextLabel={nextLabel}
       />
 
       <div className="intake-panel">
@@ -302,6 +298,18 @@ export function DiagnosticIntake({ whatsAppNumber }: { whatsAppNumber: string })
                 {currentStep === 2 && "Urgencia alta no implica prioridad garantizada: solo ayuda a leer mejor el contexto del caso."}
                 {currentStep === 3 && "WhatsApp recien se abre en la revision final, con todo el resumen ordenado."}
               </p>
+            </div>
+            <div className="intake-stepper__controls">
+              <button type="button" className="secondary-action" onClick={handleBack} disabled={currentStep === 0}>
+                <ChevronLeft size={16} />
+                Volver
+              </button>
+              {currentStep < intakeSteps.length - 1 ? (
+                <button type="button" className="primary-action" onClick={handleNext}>
+                  {nextLabel}
+                  <ChevronRight size={16} />
+                </button>
+              ) : null}
             </div>
           </>
         ) : (
